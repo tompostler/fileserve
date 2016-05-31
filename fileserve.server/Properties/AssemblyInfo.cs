@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("fileserve")]
-[assembly: AssemblyDescription("A local webserver designed with serving large files to specific people via the browser in mind.")]
+[assembly: AssemblyTitle("fileserve.server")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("fileserve")]
-[assembly: AssemblyCopyright("Copyright © UnlimitedInf 2016")]
+[assembly: AssemblyProduct("fileserve.server")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("fc198572-bd1a-4270-9457-27c924ae22ef")]
+[assembly: Guid("c6c40f29-6d75-4c64-b4ae-aa71a08af0ec")]
 
 // Version information for an assembly consists of the following four values:
 //
