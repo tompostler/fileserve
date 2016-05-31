@@ -1,4 +1,4 @@
-﻿namespace fileserve
+﻿namespace unlimitedinf.fileserve
 {
     using System;
     using System.Collections.Generic;
