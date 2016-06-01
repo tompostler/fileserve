@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace unlimitedinf.fileserve.server.Properties {
+namespace Unlimitedinf.Fileserve.Server.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace unlimitedinf.fileserve.server.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("unlimitedinf.fileserve.server.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Unlimitedinf.Fileserve.Server.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

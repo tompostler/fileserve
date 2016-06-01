@@ -1,5 +1,4 @@
-﻿[assembly: System.CLSCompliant(true)]
-namespace unlimitedinf.fileserve.server
+﻿namespace Unlimitedinf.Fileserve.Server
 {
     using System;
     using System.Collections.Generic;

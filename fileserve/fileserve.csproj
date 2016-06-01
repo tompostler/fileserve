@@ -7,7 +7,7 @@
     <ProjectGuid>{FC198572-BD1A-4270-9457-27C924AE22EF}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>unlimitedinf.fileserv</RootNamespace>
+    <RootNamespace>Unlimitedinf.Fileserve</RootNamespace>
     <AssemblyName>fileserve</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
