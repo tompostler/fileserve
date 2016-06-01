@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		noglob.ruleset = noglob.ruleset
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fileserve.tools", "fileserve.tools\fileserve.tools.csproj", "{8E083CF8-FF4D-44FD-AAF6-F84A6F81707B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{C6C40F29-6D75-4C64-B4AE-AA71A08AF0EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6C40F29-6D75-4C64-B4AE-AA71A08AF0EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6C40F29-6D75-4C64-B4AE-AA71A08AF0EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E083CF8-FF4D-44FD-AAF6-F84A6F81707B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E083CF8-FF4D-44FD-AAF6-F84A6F81707B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E083CF8-FF4D-44FD-AAF6-F84A6F81707B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E083CF8-FF4D-44FD-AAF6-F84A6F81707B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
