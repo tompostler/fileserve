@@ -28,6 +28,7 @@
                 ConsoleKeyInfo i = Console.ReadKey(true);
                 if (i.Key == ConsoleKey.Enter)
                 {
+                    Console.WriteLine();
                     break;
                 }
                 else if (i.Key == ConsoleKey.Backspace)
@@ -35,7 +36,7 @@
                     if (pwd.Length > 0)
                     {
                         pwd.RemoveAt(pwd.Length - 1);
-                        Console.Write(Properties.Resources.GetAPasswordBackspace);
+                        Console.Write(Properties.Resources.GetAPasswordBackspace.Replace("\\b", "\b"));
                     }
                 }
                 else if (!char.IsControl(i.KeyChar))
