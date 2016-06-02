@@ -65,14 +65,17 @@
         /// </summary>
         public void Start()
         {
-            const string domain = "*";
+            // This program would need to be run as admin without first doing:
+            //  'netsh http add urlacl url=http://{domain}:{port}/ user=Everyone listen=yes'
+            // I do not yet know if this will work on linux.
+            const string domain = "+";
             const int port = 80;
 
             // Spin up the server and listener
             this.httpListener.Prefixes.Add($"http://{domain}:{port}/");
             this.listenerThread = new Thread(this.ListenerThread);
-            this.listenerThread.Start();
             this.httpListener.Start();
+            this.listenerThread.Start();
 
             // Spin up the processing threads
             for (int i = 0; i < MaxProcessorsCount; i++)
