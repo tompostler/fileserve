@@ -67,7 +67,9 @@
         {
             // This program would need to be run as admin without first doing:
             //  'netsh http add urlacl url=http://{domain}:{port}/ user=Everyone listen=yes'
-            // I do not yet know if this will work on linux.
+            // Tested on Win10.
+            // For linux, to run on port 80: sudo setcap 'cap_net_bind_service=+ep' /usr/local/bin/mono-sgen
+            // http://stackoverflow.com/questions/2923966 and http://stackoverflow.com/questions/4019466
             const string domain = "+";
             const int port = 80;
 
