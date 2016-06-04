@@ -65,14 +65,19 @@
         /// </summary>
         public void Start()
         {
-            const string domain = "*";
+            // This program would need to be run as admin without first doing:
+            //  'netsh http add urlacl url=http://{domain}:{port}/ user=Everyone listen=yes'
+            // Tested on Win10.
+            // For linux, to run on port 80: sudo setcap 'cap_net_bind_service=+ep' /usr/local/bin/mono-sgen
+            // http://stackoverflow.com/questions/2923966 and http://stackoverflow.com/questions/4019466
+            const string domain = "+";
             const int port = 80;
 
             // Spin up the server and listener
             this.httpListener.Prefixes.Add($"http://{domain}:{port}/");
             this.listenerThread = new Thread(this.ListenerThread);
-            this.listenerThread.Start();
             this.httpListener.Start();
+            this.listenerThread.Start();
 
             // Spin up the processing threads
             for (int i = 0; i < MaxProcessorsCount; i++)
