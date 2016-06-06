@@ -1,10 +1,6 @@
 ﻿namespace Unlimitedinf.Fileserve.Tools
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using BCrypt.Net;
 
     /// <summary>
     /// Contains various static methods to handle passwords.
@@ -19,7 +15,7 @@
         /// <returns>A fixed 60-character BCrypt hash.</returns>
         public static string Hash(string password, int workFactor = 12)
         {
-            return BCrypt.Net.BCrypt.HashPassword(password, workFactor);
+            return BCrypt.HashPassword(password, workFactor);
         }
 
         /// <summary>
@@ -30,7 +26,20 @@
         /// <returns></returns>
         public static bool Validate(string password, string hash)
         {
-            return BCrypt.Net.BCrypt.Verify(password, hash);
+            return BCrypt.Verify(password, hash);
+        }
+
+        /// <summary>
+        /// Given a password hash, get the corresponding work factor.
+        /// </summary>
+        /// <param name="hash"></param>
+        /// <returns></returns>
+        public static int WorkFactor(string hash)
+        {
+            // Example hash: $2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy
+            // Example hash: $2a$04$6v3HDfAQaih9IwO2O3zo1.Q9mKgXOmAAgYmpa/ejTH4AWiq5oWkFy
+
+            return int.Parse(hash.Substring(4, 2));
         }
 
         /// <summary>
@@ -44,7 +53,8 @@
         {
             if (Password.Validate(password, hash))
             {
-                return Password.Hash(password, levels);
+                
+                return Password.Hash(password, Password.WorkFactor(hash) + levels);
             }
             return null;
         }
@@ -53,7 +63,7 @@
         /// Wrapper for <see cref="GetA.PasswordFromConsole"/>.
         /// </summary>
         /// <returns></returns>
-        public static string GetFromConsole()
+        public static string FromConsole()
         {
             return GetA.PasswordFromConsole();
         }
