@@ -10,7 +10,7 @@
     /// <summary>
     /// Serves files to the end user.
     /// </summary>
-    public sealed class FileServer : IDisposable
+    internal sealed class FileServer : IDisposable
     {
         /// <summary>
         /// The core server handling the http requests coming in from the outside world.

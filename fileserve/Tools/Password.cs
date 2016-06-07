@@ -1,11 +1,11 @@
 ﻿namespace Unlimitedinf.Fileserve.Tools
 {
     using BCrypt.Net;
-
+    using System;
     /// <summary>
     /// Contains various static methods to handle passwords.
     /// </summary>
-    public static class Password
+    internal static class Password
     {
         /// <summary>
         /// Using BCrypt, hash a user's password. Work factor of 12.
@@ -36,6 +36,11 @@
         /// <returns></returns>
         public static int WorkFactor(string hash)
         {
+            if (hash == null)
+                throw new ArgumentNullException(nameof(hash));
+            if (hash.Length != 60)
+                throw new ArgumentOutOfRangeException(nameof(hash), "Hash must be 60 characters (bcrypt hash length)");
+
             // Example hash: $2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy
             // Example hash: $2a$04$6v3HDfAQaih9IwO2O3zo1.Q9mKgXOmAAgYmpa/ejTH4AWiq5oWkFy
 

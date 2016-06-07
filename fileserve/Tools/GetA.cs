@@ -8,7 +8,7 @@
     /// <summary>
     /// Contains various static methods to get information from the user.
     /// </summary>
-    public static class GetA
+    internal static class GetA
     {
         /// <summary>
         /// Get a password from the console as a secure string, printing asteriks instead of the user's password while

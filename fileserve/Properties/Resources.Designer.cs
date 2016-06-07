@@ -61,6 +61,24 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \b \b.
+        /// </summary>
+        internal static string GetAPasswordBackspace {
+            get {
+                return ResourceManager.GetString("GetAPasswordBackspace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to *.
+        /// </summary>
+        internal static string GetAPasswordCoverChar {
+            get {
+                return ResourceManager.GetString("GetAPasswordCoverChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon unlimitedinf {

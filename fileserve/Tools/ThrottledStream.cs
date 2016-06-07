@@ -10,7 +10,7 @@
     /// <remarks>
     /// Based on source from http://www.codeproject.com/Articles/18243/Bandwidth-throttling
     /// </remarks>
-    public class ThrottledStream : Stream
+    internal sealed class ThrottledStream : Stream
     {
         /// <summary>
         /// A constant used to specify an infinite number of bytes that can be transferred per second.
@@ -44,7 +44,7 @@
         /// Gets the current milliseconds.
         /// </summary>
         /// <value>The current milliseconds.</value>
-        protected long CurrentMilliseconds => Environment.TickCount;
+        private static long CurrentMilliseconds => Environment.TickCount;
 
         /// <summary>
         /// Gets or sets the maximum bytes per second that can be transferred through the base stream.
@@ -283,7 +283,7 @@
         /// Throttles for the specified buffer size in bytes.
         /// </summary>
         /// <param name="bufferSizeInBytes">The buffer size in bytes.</param>
-        protected void Throttle(int bufferSizeInBytes)
+        private void Throttle(int bufferSizeInBytes)
         {
             // Make sure the buffer isn't empty.
             if (_maximumBytesPerSecond <= 0 || bufferSizeInBytes <= 0)
@@ -328,7 +328,7 @@
         /// <summary>
         /// Will reset the bytecount to 0 and reset the start time to the current time.
         /// </summary>
-        protected void Reset()
+        private void Reset()
         {
             long difference = CurrentMilliseconds - _start;
 
