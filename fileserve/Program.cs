@@ -133,6 +133,40 @@
                     {
                         config.FileList();
                     } }
+                } },
+                { "link", new Dictionary<string, Action>
+                {
+                    { "add", () =>
+                    {
+                        config.LinkAdd(Guid.Empty, Guid.Empty);
+                    } },
+                    { "del", () =>
+                    {
+                        config.LinkDel(Guid.Empty, Guid.Empty);
+                    } },
+                    { "list", () =>
+                    {
+                        config.LinkList();
+                    } }
+                } },
+                { "user", new Dictionary<string, Action>
+                {
+                    { "add", () =>
+                    {
+                        config.UserAdd(string.Empty, string.Empty);
+                    } },
+                    { "del", () =>
+                    {
+                        config.UserDel(Guid.Empty);
+                    } },
+                    { "edit", () =>
+                    {
+                        throw new NotImplementedException();
+                    } },
+                    { "list", () =>
+                    {
+                        config.UserList();
+                    } }
                 } }
             };
 

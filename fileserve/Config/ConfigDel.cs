@@ -30,5 +30,26 @@
 
             return file;
         }
+
+        /// <summary>
+        /// Delete a link from the configuration.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        public Tuple<Guid, Guid> LinkDel(Guid userId, Guid fileId)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Delete a user from the configuration. Cascade deletion through links.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public User UserDel(Guid id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -49,5 +49,16 @@
 
             return file;
         }
+
+        /// <summary>
+        /// Add a link to the configuration.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        public Tuple<Guid, Guid> LinkAdd(Guid userId, Guid fileId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
