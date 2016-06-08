@@ -35,9 +35,10 @@
         /// </summary>
         /// <param name="webPath"></param>
         /// <param name="absolutePath"></param>
+        /// <returns></returns>
         /// TODO: verify webPath is a valid URL string
         /// TODO: verify absolutePath has correct permissions/exists/etc
-        public void FileAdd(string webPath, string absolutePath)
+        public File FileAdd(string webPath, string absolutePath)
         {
             File file = new File()
             {
@@ -45,6 +46,8 @@
                 AbsolutePath = absolutePath
             };
             this.files.Add(file);
+
+            return file;
         }
     }
 }

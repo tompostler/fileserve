@@ -16,28 +16,19 @@
     {
         private readonly List<User> users;
         private readonly List<Json.File> files;
-        private readonly Dictionary<Guid, HashSet<Guid>> userfiles;
+        private readonly Dictionary<Guid, HashSet<Guid>> links;
         private readonly string filename;
 
         /// <summary>
-        /// Default Ctor.
-        /// </summary>
-        public Config()
-        {
-            this.users = new List<User>();
-            this.files = new List<Json.File>();
-            this.userfiles = new Dictionary<Guid, HashSet<Guid>>();
-            this.filename = "fileserve.json";
-        }
-
-        /// <summary>
-        /// Ctor when given a filename.
+        /// Ctor.
         /// </summary>
         /// <param name="filename"></param>
-        public Config(string filename) : this()
+        public Config(string filename)
         {
             this.filename = filename;
 
+            // If the file exists, read the configuration from it.
+            // Else create a new configuration.
             if (System.IO.File.Exists(this.filename))
             {
                 Overall configFile;
@@ -51,7 +42,36 @@
 
                 this.files = configFile.Files;
                 this.users = configFile.Users;
-                this.userfiles = configFile.UserFiles;
+                this.links = configFile.Links;
+            }
+            else
+            {
+                this.users = new List<User>();
+                this.files = new List<Json.File>();
+                this.links = new Dictionary<Guid, HashSet<Guid>>();
+            }
+        }
+
+        /// <summary>
+        /// Write the configuration to disk.
+        /// </summary>
+        /// <param name="prettify"></param>
+        public void WriteToDisk(bool prettify = true)
+        {
+            Overall configFile = new Overall()
+            {
+                Files = this.files,
+                Users = this.users,
+                Links = this.links
+            };
+
+            using (StreamWriter sw = new StreamWriter(filename))
+            using (JsonWriter jw = new JsonTextWriter(sw))
+            {
+                JsonSerializer js = new JsonSerializer();
+                if (prettify)
+                    js.Formatting = Formatting.Indented;
+                js.Serialize(jw, configFile);
             }
         }
     }

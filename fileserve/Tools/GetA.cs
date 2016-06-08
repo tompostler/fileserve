@@ -114,5 +114,17 @@
                 hex.AppendFormat("{0:x2}", b);
             return hex.ToString().Substring(0, length);
         }
+
+        /// <summary>
+        /// Get a string from the console.
+        /// </summary>
+        /// <param name="prompt">Optional prompt to put before reading the string.</param>
+        /// <returns></returns>
+        public static string StringFromConsole(string prompt = null)
+        {
+            if (!string.IsNullOrEmpty(prompt))
+                Console.Write(prompt);
+            return Console.ReadLine();
+        }
     }
 }

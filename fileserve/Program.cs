@@ -6,10 +6,15 @@
     using System.IO;
     using System.Linq;
 
-    internal sealed class Program
+    internal static class Program
     {
         static void Main(string[] args)
         {
+#if DEBUG
+            Console.Write("Debug mode commandline args: ");
+            args = Console.ReadLine().Split(' ');
+#endif
+
             // Handle the CLI
             int len = args.Length;
             if (len > 0)
@@ -51,6 +56,10 @@
                 return;
             }
 
+            string submodule = args[0];
+            string command = args[1];
+            string filename = "fileserve.json";
+
             // If 3, check valid file
             // Can assume user is not trying to be malicious as user is generally me
             if (args.Count == 3)
@@ -58,6 +67,7 @@
                 try
                 {
                     FileInfo fi = new FileInfo(args[2]);
+                    filename = fi.FullName;
                 }
                 catch (Exception ex)
                 {
@@ -66,7 +76,7 @@
                 }
             }
 
-            // Valid CLI
+            // Validate CLI
             Dictionary<string, HashSet<string>> validCli = new Dictionary<string, HashSet<string>>
             {
                 { "file", new HashSet<string> { "add", "del", "edit", "list" } },
@@ -75,26 +85,39 @@
             };
 
             // Check valid submodule
-            if (!validCli.Keys.Contains(args[0]))
+            if (!validCli.Keys.Contains(submodule))
             {
-                Console.WriteLine(Resources.ErrorInvalidSubmodule, args[0]);
+                Console.WriteLine(Resources.ErrorInvalidSubmodule, submodule);
                 ShowConfigHelp();
                 return;
             }
 
             // Check valid command
-            if (!validCli[args[0]].Contains(args[1]))
+            if (!validCli[submodule].Contains(command))
             {
-                Console.WriteLine(Resources.ErrorInvalidCommand, args[1]);
+                Console.WriteLine(Resources.ErrorInvalidCommand, command);
                 ShowConfigHelp();
                 return;
             }
 
-            Config.Config config;
-            if (args.Count == 2)
-                config = new Config.Config();
-            else
-                config = new Config.Config(args[2]);
+            // Instance of config
+            Config.Config config = new Config.Config(filename);
+
+            // Actual CLI
+            Dictionary<string, Dictionary<string, Action>> cli = new Dictionary<string, Dictionary<string, Action>>
+            {
+                { "file", new Dictionary<string, Action>
+                {
+                    { "add", () => {
+                        var file = config.FileAdd(Tools.GetA.StringFromConsole("Web path: /"), Tools.GetA.StringFromConsole("Absolute path: "));
+                        Console.WriteLine(file.Id);
+                    } }
+                } }
+            };
+
+            // Run
+            cli[submodule][command]();
+            config.WriteToDisk();
         }
 
         /// <summary>

@@ -21,7 +21,7 @@
         /// <summary>
         /// Map of which files each user has access to.
         /// </summary>
-        public Dictionary<Guid, HashSet<Guid>> UserFiles { get; set; }
+        public Dictionary<Guid, HashSet<Guid>> Links { get; set; }
     }
 
     /// <summary>
