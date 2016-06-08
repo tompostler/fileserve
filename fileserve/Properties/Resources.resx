@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConfigFileDel" xml:space="preserve">
-    <value>File deleted from configuration:
-  Web path: /{0}
-  Abs path: {1}</value>
-    <comment>0=webPath, 1=absPath</comment>
-  </data>
   <data name="ErrorGuidNotFound" xml:space="preserve">
     <value>Guid not found.</value>
   </data>
@@ -163,6 +157,18 @@
   </data>
   <data name="GetAStringFileWebPath" xml:space="preserve">
     <value>Web path: /</value>
+  </data>
+  <data name="ProgramConfigFileDel" xml:space="preserve">
+    <value>File deleted from configuration:
+  Web path: /{0}
+  Abs path: {1}</value>
+    <comment>0=webPath, 1=absPath</comment>
+  </data>
+  <data name="ProgramConfigFileList" xml:space="preserve">
+    <value>{0}
+  /{1}
+  {2}</value>
+    <comment>0=guid, 1=webPath, 2=absPath</comment>
   </data>
   <data name="ProgramHelp" xml:space="preserve">
     <value>Usage: fileserve MODULE [SUBMODULE] [COMMAND] [ARGS]

@@ -77,13 +77,16 @@
         }
 
         /// <summary>
-        /// Cleans the links of empty sets.
+        /// Cleans the links of empty sets. Sorts users by username and files by absPath.
         /// </summary>
         private void Clean()
         {
             var toRemove = this.links.Where((link) => link.Value.Count == 0);
             foreach (var link in toRemove)
                 this.links.Remove(link.Key);
+
+            this.files.Sort((l, r) => l.AbsPath.CompareTo(r.AbsPath));
+            this.users.Sort((l, r) => l.Username.CompareTo(r.Username));
         }
     }
 }

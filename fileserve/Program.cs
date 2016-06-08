@@ -84,7 +84,7 @@
             // Validate CLI
             Dictionary<string, HashSet<string>> validCli = new Dictionary<string, HashSet<string>>
             {
-                { "file", new HashSet<string> { "add", "del", "edit", "list" } },
+                { "file", new HashSet<string> { "add", "del", "list" } },
                 { "link", new HashSet<string> { "add", "del", "list" } },
                 { "user", new HashSet<string> { "add", "del", "edit", "list" } }
             };
@@ -126,8 +126,12 @@
                             if (file == null)
                                 Console.WriteLine(Resources.ErrorGuidNotFound);
                             else
-                                Console.WriteLine(Resources.ConfigFileDel, file.WebPath, file.AbsPath);
+                                Console.WriteLine(Resources.ProgramConfigFileDel, file.WebPath, file.AbsPath);
                         }
+                    } },
+                    { "list", () =>
+                    {
+                        config.FileList();
                     } }
                 } }
             };

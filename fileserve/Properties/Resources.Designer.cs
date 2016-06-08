@@ -61,17 +61,6 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File deleted from configuration:
-        ///  Web path: /{0}
-        ///  Abs path: {1}.
-        /// </summary>
-        internal static string ConfigFileDel {
-            get {
-                return ResourceManager.GetString("ConfigFileDel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Guid not found..
         /// </summary>
         internal static string ErrorGuidNotFound {
@@ -176,6 +165,28 @@ namespace Unlimitedinf.Fileserve.Properties {
         internal static string GetAStringFileWebPath {
             get {
                 return ResourceManager.GetString("GetAStringFileWebPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File deleted from configuration:
+        ///  Web path: /{0}
+        ///  Abs path: {1}.
+        /// </summary>
+        internal static string ProgramConfigFileDel {
+            get {
+                return ResourceManager.GetString("ProgramConfigFileDel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}
+        ///  /{1}
+        ///  {2}.
+        /// </summary>
+        internal static string ProgramConfigFileList {
+            get {
+                return ResourceManager.GetString("ProgramConfigFileList", resourceCulture);
             }
         }
         
