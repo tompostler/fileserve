@@ -2,11 +2,10 @@
 {
     using System;
     using System.Security;
-    using System.Security.Cryptography;
     using System.Text;
 
     /// <summary>
-    /// Contains various static methods to get information from the user.
+    /// Contains various static methods to get information from the user via the console.
     /// </summary>
     internal static class GetA
     {
@@ -18,7 +17,7 @@
         /// A la http://stackoverflow.com/a/3404464
         /// </remarks>
         /// <returns></returns>
-        public static SecureString PasswordFromConsoleSecurely()
+        public static SecureString PasswordSecurely()
         {
             SecureString pwd = new SecureString();
             while (true)
@@ -53,7 +52,7 @@
         /// A la http://stackoverflow.com/a/3404464
         /// </remarks>
         /// <returns></returns>
-        public static string PasswordFromConsole()
+        public static string Password()
         {
             StringBuilder pwd = new StringBuilder();
             while (true)
@@ -82,45 +81,11 @@
         }
 
         /// <summary>
-        /// Get a base64 token.
-        /// </summary>
-        /// <param name="length"></param>
-        /// <returns></returns>
-        public static string Token(int length = 64)
-        {
-            byte[] random = new byte[length * 3 / 4 + 1];
-            using (RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider())
-            {
-                rngCsp.GetBytes(random);
-            }
-            return Convert.ToBase64String(random).Substring(0, length);
-        }
-        
-        /// <summary>
-        /// Get a hexadecimal token.
-        /// </summary>
-        /// <param name="length"></param>
-        /// <returns></returns>
-        public static string HexToken(int length = 64)
-        {
-            byte[] random = new byte[length / 2 + 1];
-            using (RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider())
-            {
-                rngCsp.GetBytes(random);
-            }
-
-            StringBuilder hex = new StringBuilder(length);
-            foreach (byte b in random)
-                hex.AppendFormat("{0:x2}", b);
-            return hex.ToString().Substring(0, length);
-        }
-
-        /// <summary>
         /// Get a string from the console.
         /// </summary>
         /// <param name="prompt">Optional prompt to put before reading the string.</param>
         /// <returns></returns>
-        public static string StringFromConsole(string prompt = null)
+        public static string String(string prompt = null)
         {
             if (!string.IsNullOrEmpty(prompt))
                 Console.Write(prompt);

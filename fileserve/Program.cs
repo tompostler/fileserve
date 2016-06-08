@@ -109,7 +109,7 @@
                 { "file", new Dictionary<string, Action>
                 {
                     { "add", () => {
-                        var file = config.FileAdd(Tools.GetA.StringFromConsole("Web path: /"), Tools.GetA.StringFromConsole("Absolute path: "));
+                        var file = config.FileAdd(Tools.GetA.String("Web path: /"), Tools.GetA.String("Absolute path: "));
                         Console.WriteLine(file.Id);
                     } }
                 } }

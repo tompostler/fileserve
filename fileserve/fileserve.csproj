@@ -85,6 +85,7 @@
     <Compile Include="Config\JsonTypes.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Server\FileServer.cs" />
+    <Compile Include="Tools\GenA.cs" />
     <Compile Include="Tools\GetA.cs" />
     <Compile Include="Tools\Password.cs" />
     <Compile Include="Program.cs" />

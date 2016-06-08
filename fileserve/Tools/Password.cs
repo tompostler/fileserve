@@ -65,12 +65,12 @@
         }
 
         /// <summary>
-        /// Wrapper for <see cref="GetA.PasswordFromConsole"/>.
+        /// Wrapper for <see cref="GetA.Password"/>.
         /// </summary>
         /// <returns></returns>
         public static string FromConsole()
         {
-            return GetA.PasswordFromConsole();
+            return GetA.Password();
         }
     }
 }
