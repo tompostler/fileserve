@@ -1,6 +1,5 @@
 ﻿namespace Unlimitedinf.Fileserve.Config
 {
-    using Json;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
@@ -14,11 +13,11 @@
     /// </summary>
     internal sealed partial class Config
     {
-        private readonly List<User> users;
         private readonly List<Json.File> files;
+        private readonly List<Json.User> users;
         private readonly Dictionary<Guid, HashSet<Guid>> links;
         private readonly string filename;
-
+        
         /// <summary>
         /// Ctor.
         /// </summary>
@@ -31,13 +30,13 @@
             // Else create a new configuration.
             if (System.IO.File.Exists(this.filename))
             {
-                Overall configFile;
+                Json.Overall configFile;
 
                 using (StreamReader sr = new StreamReader(filename))
                 using (JsonReader jr = new JsonTextReader(sr))
                 {
                     JsonSerializer js = new JsonSerializer();
-                    configFile = js.Deserialize<Overall>(jr);
+                    configFile = js.Deserialize<Json.Overall>(jr);
                 }
 
                 this.files = configFile.Files;
@@ -46,7 +45,7 @@
             }
             else
             {
-                this.users = new List<User>();
+                this.users = new List<Json.User>();
                 this.files = new List<Json.File>();
                 this.links = new Dictionary<Guid, HashSet<Guid>>();
             }
@@ -58,7 +57,9 @@
         /// <param name="prettify"></param>
         public void WriteToDisk(bool prettify = true)
         {
-            Overall configFile = new Overall()
+            this.Clean();
+
+            Json.Overall configFile = new Json.Overall()
             {
                 Files = this.files,
                 Users = this.users,
@@ -73,6 +74,16 @@
                     js.Formatting = Formatting.Indented;
                 js.Serialize(jw, configFile);
             }
+        }
+
+        /// <summary>
+        /// Cleans the links of empty sets.
+        /// </summary>
+        private void Clean()
+        {
+            var toRemove = this.links.Where((link) => link.Value.Count == 0);
+            foreach (var link in toRemove)
+                this.links.Remove(link.Key);
         }
     }
 }

@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ConfigFileDel" xml:space="preserve">
+    <value>File deleted from configuration:
+  Web path: /{0}
+  Abs path: {1}</value>
+    <comment>0=webPath, 1=absPath</comment>
+  </data>
+  <data name="ErrorGuidNotFound" xml:space="preserve">
+    <value>Guid not found.</value>
+  </data>
   <data name="ErrorIdk" xml:space="preserve">
     <value>I'm not sure what you wanted.</value>
   </data>
@@ -132,15 +141,28 @@
     <value>Invalid filename: {0}</value>
     <comment>0=filename</comment>
   </data>
+  <data name="ErrorInvalidGuid" xml:space="preserve">
+    <value>Invalid guid: {0}</value>
+    <comment>0=guid</comment>
+  </data>
   <data name="ErrorInvalidSubmodule" xml:space="preserve">
     <value>Invalid submodule: {0}</value>
     <comment>0=submoduleName</comment>
+  </data>
+  <data name="GetAGuid" xml:space="preserve">
+    <value>Guid: </value>
   </data>
   <data name="GetAPasswordBackspace" xml:space="preserve">
     <value>\b \b</value>
   </data>
   <data name="GetAPasswordCoverChar" xml:space="preserve">
     <value>*</value>
+  </data>
+  <data name="GetAStringFileAbsolutePath" xml:space="preserve">
+    <value>Absolute path:</value>
+  </data>
+  <data name="GetAStringFileWebPath" xml:space="preserve">
+    <value>Web path: /</value>
   </data>
   <data name="ProgramHelp" xml:space="preserve">
     <value>Usage: fileserve MODULE [SUBMODULE] [COMMAND] [ARGS]

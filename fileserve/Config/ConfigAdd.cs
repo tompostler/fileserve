@@ -43,7 +43,7 @@
             File file = new File()
             {
                 WebPath = webPath,
-                AbsolutePath = absolutePath
+                AbsPath = absolutePath
             };
             this.files.Add(file);
 

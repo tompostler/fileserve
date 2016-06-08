@@ -80,7 +80,7 @@
         /// <summary>
         /// Absolute path in the filesystem for the file to serve.
         /// </summary>
-        public string AbsolutePath { get; set; }
+        public string AbsPath { get; set; }
 
         public Guid Id { get; set; }
 

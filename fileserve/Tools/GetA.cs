@@ -1,5 +1,6 @@
 ﻿namespace Unlimitedinf.Fileserve.Tools
 {
+    using Properties;
     using System;
     using System.Security;
     using System.Text;
@@ -112,6 +113,7 @@
                 }
                 catch (Exception ex) when (ex is FormatException || ex is OverflowException)
                 {
+                    Console.WriteLine(Resources.ErrorInvalidGuid, text);
                     continue;
                 }
             }

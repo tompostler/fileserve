@@ -61,6 +61,26 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File deleted from configuration:
+        ///  Web path: /{0}
+        ///  Abs path: {1}.
+        /// </summary>
+        internal static string ConfigFileDel {
+            get {
+                return ResourceManager.GetString("ConfigFileDel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guid not found..
+        /// </summary>
+        internal static string ErrorGuidNotFound {
+            get {
+                return ResourceManager.GetString("ErrorGuidNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to I&apos;m not sure what you wanted..
         /// </summary>
         internal static string ErrorIdk {
@@ -97,11 +117,29 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid guid: {0}.
+        /// </summary>
+        internal static string ErrorInvalidGuid {
+            get {
+                return ResourceManager.GetString("ErrorInvalidGuid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid submodule: {0}.
         /// </summary>
         internal static string ErrorInvalidSubmodule {
             get {
                 return ResourceManager.GetString("ErrorInvalidSubmodule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guid: .
+        /// </summary>
+        internal static string GetAGuid {
+            get {
+                return ResourceManager.GetString("GetAGuid", resourceCulture);
             }
         }
         
@@ -120,6 +158,24 @@ namespace Unlimitedinf.Fileserve.Properties {
         internal static string GetAPasswordCoverChar {
             get {
                 return ResourceManager.GetString("GetAPasswordCoverChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Absolute path:.
+        /// </summary>
+        internal static string GetAStringFileAbsolutePath {
+            get {
+                return ResourceManager.GetString("GetAStringFileAbsolutePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Web path: /.
+        /// </summary>
+        internal static string GetAStringFileWebPath {
+            get {
+                return ResourceManager.GetString("GetAStringFileWebPath", resourceCulture);
             }
         }
         

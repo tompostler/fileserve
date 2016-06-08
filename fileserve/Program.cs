@@ -8,13 +8,18 @@
 
     internal static class Program
     {
+#if DEBUG
+        // Development only block.
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "commandline")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "System.Console.Write(System.String)")]
         static void Main(string[] args)
         {
-#if DEBUG
-            Console.Write("Debug mode commandline args: ");
+            Console.Write("VS F5 mode commandline args: ");
             args = Console.ReadLine().Split(' ');
+#else
+        static void Main(string[] args)
+        {
 #endif
-
             // Handle the CLI
             int len = args.Length;
             if (len > 0)
@@ -109,13 +114,20 @@
                 { "file", new Dictionary<string, Action>
                 {
                     { "add", () => {
-                        var file = config.FileAdd(Tools.GetA.String("Web path: /"), Tools.GetA.String("Absolute path: "));
+                        var file = config.FileAdd(Tools.GetA.String(Resources.GetAStringFileWebPath), Tools.GetA.String(Resources.GetAStringFileAbsolutePath));
                         Console.WriteLine(file.Id);
                     } },
                     { "del", () =>
                     {
-                        Guid g = Tools.GetA.Guid("File Guid: ");
-                        //TODO no-op
+                        Guid g = Tools.GetA.Guid(Resources.GetAGuid);
+                        if (g != Guid.Empty)
+                        {
+                            Config.Json.File file = config.FileDel(g);
+                            if (file == null)
+                                Console.WriteLine(Resources.ErrorGuidNotFound);
+                            else
+                                Console.WriteLine(Resources.ConfigFileDel, file.WebPath, file.AbsPath);
+                        }
                     } }
                 } }
             };
