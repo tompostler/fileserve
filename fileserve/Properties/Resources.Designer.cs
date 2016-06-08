@@ -61,6 +61,51 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I&apos;m not sure what you wanted..
+        /// </summary>
+        internal static string ErrorIdk {
+            get {
+                return ResourceManager.GetString("ErrorIdk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect number of arguments for {0} module: {1}.
+        /// </summary>
+        internal static string ErrorIncorrectArgCount {
+            get {
+                return ResourceManager.GetString("ErrorIncorrectArgCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid command: {0}.
+        /// </summary>
+        internal static string ErrorInvalidCommand {
+            get {
+                return ResourceManager.GetString("ErrorInvalidCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid filename: {0}.
+        /// </summary>
+        internal static string ErrorInvalidFilename {
+            get {
+                return ResourceManager.GetString("ErrorInvalidFilename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid submodule: {0}.
+        /// </summary>
+        internal static string ErrorInvalidSubmodule {
+            get {
+                return ResourceManager.GetString("ErrorInvalidSubmodule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to \b \b.
         /// </summary>
         internal static string GetAPasswordBackspace {
@@ -75,6 +120,50 @@ namespace Unlimitedinf.Fileserve.Properties {
         internal static string GetAPasswordCoverChar {
             get {
                 return ResourceManager.GetString("GetAPasswordCoverChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usage: fileserve MODULE [SUBMODULE] [COMMAND] [ARGS]
+        ///
+        ///A complete utilty to manage and serve up binary files on a per-user basis using
+        ///HTTP to enable the largest audience consumption.
+        ///
+        ///Usage is similar to git. Example:
+        ///    fileserve config user add
+        ///Will pop up the walkthrough to add a user to the configuration.
+        ///
+        ///    fileserve help config
+        ///    fileserve help config this and that
+        ///Will give you the help for the module config.
+        ///
+        ///Modules:
+        ///  config        Adjust the configuration of the users, files, a [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ProgramHelp {
+            get {
+                return ResourceManager.GetString("ProgramHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CONFIG MODULE
+        ///
+        ///Usage: fileserve config SUBMODULE COMMAND [FILENAME]
+        ///
+        ///This module is used to adjust the configuration of the users, files, and links
+        ///available when running the program.
+        ///
+        ///The config module looks for a fileserve.json in the current directory, but may
+        ///also have this file passed in to override the default search. If the passed in
+        ///file exists, then the configuration is loaded. If the passed in file does not
+        ///exist, then the configuration will be saved there.
+        ///
+        ///This author&apos;s recommendatio [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ProgramHelpConfig {
+            get {
+                return ResourceManager.GetString("ProgramHelpConfig", resourceCulture);
             }
         }
         

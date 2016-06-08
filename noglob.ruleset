@@ -9,7 +9,7 @@
   <Include Path="securityrules.ruleset" Action="Default" />
   <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
     <Rule Id="CA1026" Action="None" />
-    <Rule Id="CA1704" Action="Warning" />
-    <Rule Id="CA1709" Action="Warning" />
+    <Rule Id="CA1701" Action="None" />
+    <Rule Id="CA1703" Action="None" />
   </Rules>
 </RuleSet>
