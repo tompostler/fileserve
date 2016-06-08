@@ -111,6 +111,11 @@
                     { "add", () => {
                         var file = config.FileAdd(Tools.GetA.String("Web path: /"), Tools.GetA.String("Absolute path: "));
                         Console.WriteLine(file.Id);
+                    } },
+                    { "del", () =>
+                    {
+                        Guid g = Tools.GetA.Guid("File Guid: ");
+                        //TODO no-op
                     } }
                 } }
             };

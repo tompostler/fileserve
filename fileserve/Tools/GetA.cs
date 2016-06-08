@@ -91,5 +91,31 @@
                 Console.Write(prompt);
             return Console.ReadLine();
         }
+
+        /// <summary>
+        /// Get a Guid from the console. Returns blank Guid on failure.
+        /// </summary>
+        /// <param name="prompt"></param>
+        /// <param name="retryCount"></param>
+        /// <returns></returns>
+        public static Guid Guid(string prompt = null, int retryCount = 3)
+        {
+            while (retryCount-- > 0)
+            {
+                string text = GetA.String(prompt);
+                if (string.IsNullOrEmpty(text))
+                    break;
+                try
+                {
+                    Guid g = new Guid(text);
+                    return g;
+                }
+                catch (Exception ex) when (ex is FormatException || ex is OverflowException)
+                {
+                    continue;
+                }
+            }
+            return System.Guid.Empty;
+        }
     }
 }
