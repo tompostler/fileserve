@@ -1,6 +1,7 @@
 ﻿namespace Unlimitedinf.Fileserve.Config
 {
     using Json;
+    using Properties;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -9,6 +10,51 @@
 
     internal sealed partial class Config
     {
+        /// <summary>
+        /// Add a file to the configuration.
+        /// </summary>
+        public void FileAdd()
+        {
+            string webPath = Tools.GetA.UrlPath(Resources.GetAUriFileWebPath);
+            string absolutePath = Tools.GetA.FileAbsPath(Resources.GetAFileAbsPath);
+
+            if (string.IsNullOrEmpty(webPath) || string.IsNullOrEmpty(absolutePath))
+            {
+                Console.WriteLine(Resources.ProgramConfigFileAddFail);
+                return;
+            }
+
+            File file = new File()
+            {
+                WebPath = webPath,
+                AbsPath = absolutePath
+            };
+            this.files.Add(file);
+
+            Console.WriteLine(Resources.ProgramConfigFileAdd, file.Id, file.WebPath, file.AbsPath);
+        }
+
+        /// <summary>
+        /// Add a link to the configuration.
+        /// </summary>
+        public void LinkAdd()
+        {
+            Guid userId = Tools.GetA.Guid(Resources.GetAGuidUser);
+            Guid fileId = Tools.GetA.Guid(Resources.GetAGuidFile);
+
+            if (userId == Guid.Empty || fileId == Guid.Empty)
+            {
+                Console.WriteLine(Resources.ProgramConfigLinkAddFail);
+                return;
+            }
+
+            if (!this.links.ContainsKey(userId))
+                this.links[userId] = new HashSet<Guid>();
+            this.links[userId].Add(fileId);
+
+            Console.WriteLine(Resources.ProgramConfigLinkAdd, userId, fileId);
+        }
+
         /// <summary>
         /// Add a user to the configuration.
         /// </summary>
@@ -28,37 +74,6 @@
                 ByteRatePerFileLimit = byteRatePerFileLimit
             };
             this.users.Add(user);
-        }
-
-        /// <summary>
-        /// Add a file to the configuration.
-        /// </summary>
-        /// <param name="webPath"></param>
-        /// <param name="absolutePath"></param>
-        /// <returns></returns>
-        /// TODO: verify webPath is a valid URL string
-        /// TODO: verify absolutePath has correct permissions/exists/etc
-        public File FileAdd(string webPath, string absolutePath)
-        {
-            File file = new File()
-            {
-                WebPath = webPath,
-                AbsPath = absolutePath
-            };
-            this.files.Add(file);
-
-            return file;
-        }
-
-        /// <summary>
-        /// Add a link to the configuration.
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="fileId"></param>
-        /// <returns></returns>
-        public Tuple<Guid, Guid> LinkAdd(Guid userId, Guid fileId)
-        {
-            throw new NotImplementedException();
         }
     }
 }

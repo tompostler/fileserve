@@ -2,6 +2,7 @@
 {
     using Properties;
     using System;
+    using System.IO;
     using System.Security;
     using System.Text;
 
@@ -114,10 +115,63 @@
                 catch (Exception ex) when (ex is FormatException || ex is OverflowException)
                 {
                     Console.WriteLine(Resources.ErrorInvalidGuid, text);
-                    continue;
                 }
             }
             return System.Guid.Empty;
+        }
+
+        /// <summary>
+        /// Get a valid Url path from the console.
+        /// </summary>
+        /// <param name="prompt"></param>
+        /// <param name="retryCount"></param>
+        /// <returns></returns>
+        public static string UrlPath(string prompt = null, int retryCount = 3)
+        {
+            while (retryCount-- > 0)
+            {
+                string text = GetA.String(prompt);
+                if (string.IsNullOrEmpty(text))
+                    break;
+
+                Uri uri;
+                if (!Uri.TryCreate(text, UriKind.Relative, out uri))
+                    Console.WriteLine(Resources.ErrorInvalidWebPath, text);
+                else
+                    return text;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Get an absolute path to a file from the console.
+        /// </summary>
+        /// <param name="prompt"></param>
+        /// <param name="retryCount"></param>
+        /// <param name="existenceCheck">As part of checking for a successful path, check if the file exists.</param>
+        /// <returns></returns>
+        public static string FileAbsPath(string prompt = null, int retryCount = 3, bool existenceCheck = true)
+        {
+            while (retryCount-- > 0)
+            {
+                string text = GetA.String(prompt);
+                if (string.IsNullOrEmpty(text))
+                    break;
+
+                try
+                {
+                    string path = Path.GetFullPath(text);
+                    if (!existenceCheck || File.Exists(path))
+                        return path;
+                    else
+                        Console.WriteLine(Resources.ErrorFileNotFound, path);
+                }
+                catch (Exception ex) when (ex is ArgumentException)
+                {
+                    Console.WriteLine(Resources.ErrorInvalidFilename, text);
+                }
+            }
+            return null;
         }
     }
 }

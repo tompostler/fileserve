@@ -1,6 +1,7 @@
 ﻿namespace Unlimitedinf.Fileserve.Config
 {
     using Json;
+    using Properties;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -12,13 +13,21 @@
         /// <summary>
         /// Delete a file from the configuration. Cascade deletion through links.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public File FileDel(Guid id)
+        public void FileDel()
         {
+            Guid id = Tools.GetA.Guid(Resources.GetAGuid);
+            if (id == Guid.Empty)
+            {
+                Console.WriteLine(Resources.ProgramConfigFileDelFail);
+                return;
+            }
+
             int index = this.files.FindIndex((f) => f.Id == id);
             if (index == -1)
-                return null;
+            {
+                Console.WriteLine(Resources.ErrorGuidNotFound);
+                return;
+            }
 
             File file = this.files[index];
             this.files.RemoveAt(index);
@@ -28,7 +37,7 @@
                     link.Value.Remove(id);
             }
 
-            return file;
+            Console.WriteLine(Resources.ProgramConfigFileDel, file.WebPath, file.AbsPath);
         }
 
         /// <summary>

@@ -84,7 +84,7 @@
             // Validate CLI
             Dictionary<string, HashSet<string>> validCli = new Dictionary<string, HashSet<string>>
             {
-                { "file", new HashSet<string> { "add", "del", "list" } },
+                { "file", new HashSet<string> { "add", "del", "edit", "list" } },
                 { "link", new HashSet<string> { "add", "del", "list" } },
                 { "user", new HashSet<string> { "add", "del", "edit", "list" } }
             };
@@ -113,33 +113,17 @@
             {
                 { "file", new Dictionary<string, Action>
                 {
-                    { "add", () => {
-                        var file = config.FileAdd(Tools.GetA.String(Resources.GetAStringFileWebPath), Tools.GetA.String(Resources.GetAStringFileAbsolutePath));
-                        Console.WriteLine(file.Id);
-                    } },
-                    { "del", () =>
+                    { "add", config.FileAdd },
+                    { "del", config.FileDel },
+                    { "edit", () =>
                     {
-                        Guid g = Tools.GetA.Guid(Resources.GetAGuid);
-                        if (g != Guid.Empty)
-                        {
-                            Config.Json.File file = config.FileDel(g);
-                            if (file == null)
-                                Console.WriteLine(Resources.ErrorGuidNotFound);
-                            else
-                                Console.WriteLine(Resources.ProgramConfigFileDel, file.WebPath, file.AbsPath);
-                        }
+                        throw new NotImplementedException();
                     } },
-                    { "list", () =>
-                    {
-                        config.FileList();
-                    } }
+                    { "list", config.FileList }
                 } },
                 { "link", new Dictionary<string, Action>
                 {
-                    { "add", () =>
-                    {
-                        config.LinkAdd(Guid.Empty, Guid.Empty);
-                    } },
+                    { "add", config.LinkAdd },
                     { "del", () =>
                     {
                         config.LinkDel(Guid.Empty, Guid.Empty);

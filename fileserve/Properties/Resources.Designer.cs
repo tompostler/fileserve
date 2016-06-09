@@ -61,6 +61,15 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File not found: {0}.
+        /// </summary>
+        internal static string ErrorFileNotFound {
+            get {
+                return ResourceManager.GetString("ErrorFileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guid not found..
         /// </summary>
         internal static string ErrorGuidNotFound {
@@ -124,11 +133,47 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid web path: {0}.
+        /// </summary>
+        internal static string ErrorInvalidWebPath {
+            get {
+                return ResourceManager.GetString("ErrorInvalidWebPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Absolute path:.
+        /// </summary>
+        internal static string GetAFileAbsPath {
+            get {
+                return ResourceManager.GetString("GetAFileAbsPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guid: .
         /// </summary>
         internal static string GetAGuid {
             get {
                 return ResourceManager.GetString("GetAGuid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File guid: .
+        /// </summary>
+        internal static string GetAGuidFile {
+            get {
+                return ResourceManager.GetString("GetAGuidFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User guid: .
+        /// </summary>
+        internal static string GetAGuidUser {
+            get {
+                return ResourceManager.GetString("GetAGuidUser", resourceCulture);
             }
         }
         
@@ -151,20 +196,31 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Absolute path:.
+        ///   Looks up a localized string similar to Web path: /.
         /// </summary>
-        internal static string GetAStringFileAbsolutePath {
+        internal static string GetAUriFileWebPath {
             get {
-                return ResourceManager.GetString("GetAStringFileAbsolutePath", resourceCulture);
+                return ResourceManager.GetString("GetAUriFileWebPath", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Web path: /.
+        ///   Looks up a localized string similar to {0}
+        ///  /{1}
+        ///  {2}.
         /// </summary>
-        internal static string GetAStringFileWebPath {
+        internal static string ProgramConfigFileAdd {
             get {
-                return ResourceManager.GetString("GetAStringFileWebPath", resourceCulture);
+                return ResourceManager.GetString("ProgramConfigFileAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Did not add a file to the configuration..
+        /// </summary>
+        internal static string ProgramConfigFileAddFail {
+            get {
+                return ResourceManager.GetString("ProgramConfigFileAddFail", resourceCulture);
             }
         }
         
@@ -180,6 +236,15 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Did not delete a file from the configuration..
+        /// </summary>
+        internal static string ProgramConfigFileDelFail {
+            get {
+                return ResourceManager.GetString("ProgramConfigFileDelFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}
         ///  /{1}
         ///  {2}.
@@ -187,6 +252,24 @@ namespace Unlimitedinf.Fileserve.Properties {
         internal static string ProgramConfigFileList {
             get {
                 return ResourceManager.GetString("ProgramConfigFileList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} &lt;--&gt; {1}.
+        /// </summary>
+        internal static string ProgramConfigLinkAdd {
+            get {
+                return ResourceManager.GetString("ProgramConfigLinkAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Did not add a link to the configuration..
+        /// </summary>
+        internal static string ProgramConfigLinkAddFail {
+            get {
+                return ResourceManager.GetString("ProgramConfigLinkAddFail", resourceCulture);
             }
         }
         

@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ErrorFileNotFound" xml:space="preserve">
+    <value>File not found: {0}</value>
+    <comment>0=path</comment>
+  </data>
   <data name="ErrorGuidNotFound" xml:space="preserve">
     <value>Guid not found.</value>
   </data>
@@ -143,8 +147,21 @@
     <value>Invalid submodule: {0}</value>
     <comment>0=submoduleName</comment>
   </data>
+  <data name="ErrorInvalidWebPath" xml:space="preserve">
+    <value>Invalid web path: {0}</value>
+    <comment>0=webPath</comment>
+  </data>
+  <data name="GetAFileAbsPath" xml:space="preserve">
+    <value>Absolute path:</value>
+  </data>
   <data name="GetAGuid" xml:space="preserve">
     <value>Guid: </value>
+  </data>
+  <data name="GetAGuidFile" xml:space="preserve">
+    <value>File guid: </value>
+  </data>
+  <data name="GetAGuidUser" xml:space="preserve">
+    <value>User guid: </value>
   </data>
   <data name="GetAPasswordBackspace" xml:space="preserve">
     <value>\b \b</value>
@@ -152,11 +169,17 @@
   <data name="GetAPasswordCoverChar" xml:space="preserve">
     <value>*</value>
   </data>
-  <data name="GetAStringFileAbsolutePath" xml:space="preserve">
-    <value>Absolute path:</value>
-  </data>
-  <data name="GetAStringFileWebPath" xml:space="preserve">
+  <data name="GetAUriFileWebPath" xml:space="preserve">
     <value>Web path: /</value>
+  </data>
+  <data name="ProgramConfigFileAdd" xml:space="preserve">
+    <value>{0}
+  /{1}
+  {2}</value>
+    <comment>0=guid, 1=webPath, 2=absPath</comment>
+  </data>
+  <data name="ProgramConfigFileAddFail" xml:space="preserve">
+    <value>Did not add a file to the configuration.</value>
   </data>
   <data name="ProgramConfigFileDel" xml:space="preserve">
     <value>File deleted from configuration:
@@ -164,11 +187,21 @@
   Abs path: {1}</value>
     <comment>0=webPath, 1=absPath</comment>
   </data>
+  <data name="ProgramConfigFileDelFail" xml:space="preserve">
+    <value>Did not delete a file from the configuration.</value>
+  </data>
   <data name="ProgramConfigFileList" xml:space="preserve">
     <value>{0}
   /{1}
   {2}</value>
     <comment>0=guid, 1=webPath, 2=absPath</comment>
+  </data>
+  <data name="ProgramConfigLinkAdd" xml:space="preserve">
+    <value>{0} &lt;--&gt; {1}</value>
+    <comment>0=userId, 1=fileId</comment>
+  </data>
+  <data name="ProgramConfigLinkAddFail" xml:space="preserve">
+    <value>Did not add a link to the configuration.</value>
   </data>
   <data name="ProgramHelp" xml:space="preserve">
     <value>Usage: fileserve MODULE [SUBMODULE] [COMMAND] [ARGS]
