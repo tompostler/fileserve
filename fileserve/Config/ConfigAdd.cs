@@ -72,11 +72,11 @@
         public void UserAdd()
         {
             string username = Tools.GetA.String(Resources.GetAStringUser);
-            string password = Tools.GetA.String(Resources.GetAPasswordPass);
+            string password = Tools.GetA.Password(Resources.GetAPasswordPass);
             uint? concurrentFileLimit = Tools.GetA.Uint(Resources.GetAUintConcurrentFileLimit1);
             uint? byteRatePerFileLimit = Tools.GetA.Uint(Resources.GetAUintByteRateLimitInf);
 
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || !concurrentFileLimit.HasValue || !byteRatePerFileLimit.HasValue)
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 Console.WriteLine(Resources.ProgramConfigUserAddFail);
                 return;
@@ -86,8 +86,8 @@
             {
                 Username = username,
                 PasswordHash = Tools.Password.Hash(password),
-                ConcurrentFileLimit = concurrentFileLimit.Value,
-                ByteRatePerFileLimit = byteRatePerFileLimit.Value
+                ConcurrentFileLimit = concurrentFileLimit ?? UserDefaults.ConcurrentFileLimit,
+                ByteRatePerFileLimit = byteRatePerFileLimit ?? UserDefaults.ByteRatePerFileLimit
             };
             this.users.Add(user);
 

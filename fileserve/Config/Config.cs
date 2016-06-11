@@ -84,7 +84,7 @@
         /// </summary>
         private void Clean()
         {
-            var toRemove = this.links.Where((link) => link.Value.Count == 0);
+            var toRemove = this.links.Where((link) => link.Value.Count == 0).ToList();
             foreach (var link in toRemove)
                 this.links.Remove(link.Key);
 

@@ -54,8 +54,11 @@
         /// A la http://stackoverflow.com/a/3404464
         /// </remarks>
         /// <returns></returns>
-        public static string Password()
+        public static string Password(string prompt = null)
         {
+            if (!string.IsNullOrEmpty(prompt))
+                Console.Write(prompt);
+
             StringBuilder pwd = new StringBuilder();
             while (true)
             {
