@@ -48,6 +48,17 @@
                 return;
             }
 
+            if (!this.userGuids.Contains(userId))
+            {
+                Console.WriteLine(Resources.ErrorUserGuidNotFound);
+                return;
+            }
+            if (!this.fileGuids.Contains(fileId))
+            {
+                Console.WriteLine(Resources.ErrorFileGuidNotFound);
+                return;
+            }
+
             if (!this.links.ContainsKey(userId))
                 this.links[userId] = new HashSet<Guid>();
             this.links[userId].Add(fileId);
@@ -58,22 +69,29 @@
         /// <summary>
         /// Add a user to the configuration.
         /// </summary>
-        /// <param name="username"></param>
-        /// <param name="passwordHash"></param>
-        /// <param name="concurrentFileLimit"></param>
-        /// <param name="byteRatePerFileLimit"></param>
-        public void UserAdd(string username, string passwordHash,
-            int concurrentFileLimit = UserDefaults.ConcurrentFileLimit,
-            int byteRatePerFileLimit = UserDefaults.ByteRatePerFileLimit)
+        public void UserAdd()
         {
+            string username = Tools.GetA.String(Resources.GetAStringUser);
+            string password = Tools.GetA.String(Resources.GetAPasswordPass);
+            uint? concurrentFileLimit = Tools.GetA.Uint(Resources.GetAUintConcurrentFileLimit1);
+            uint? byteRatePerFileLimit = Tools.GetA.Uint(Resources.GetAUintByteRateLimitInf);
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || !concurrentFileLimit.HasValue || !byteRatePerFileLimit.HasValue)
+            {
+                Console.WriteLine(Resources.ProgramConfigUserAddFail);
+                return;
+            }
+
             User user = new User()
             {
                 Username = username,
-                PasswordHash = passwordHash,
-                ConcurrentFileLimit = concurrentFileLimit,
-                ByteRatePerFileLimit = byteRatePerFileLimit
+                PasswordHash = Tools.Password.Hash(password),
+                ConcurrentFileLimit = concurrentFileLimit.Value,
+                ByteRatePerFileLimit = byteRatePerFileLimit.Value
             };
             this.users.Add(user);
+
+            Console.WriteLine(Resources.ProgramConfigUserAdd, user.Id, user.Username, user.ConcurrentFileLimit, user.ByteRatePerFileLimit);
         }
     }
 }

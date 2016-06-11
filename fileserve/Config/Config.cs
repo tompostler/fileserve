@@ -17,6 +17,9 @@
         private readonly List<Json.User> users;
         private readonly Dictionary<Guid, HashSet<Guid>> links;
         private readonly string filename;
+
+        private HashSet<Guid> fileGuids => new HashSet<Guid>(this.files.ConvertAll<Guid>((file) => file.Id));
+        private HashSet<Guid> userGuids => new HashSet<Guid>(this.users.ConvertAll<Guid>((user) => user.Id));
         
         /// <summary>
         /// Ctor.
@@ -87,6 +90,26 @@
 
             this.files.Sort((l, r) => l.AbsPath.CompareTo(r.AbsPath));
             this.users.Sort((l, r) => l.Username.CompareTo(r.Username));
+        }
+
+        /// <summary>
+        /// Convert a fild Guid to absolute path. Does not check existence.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        private string FileIdToAbsPath(Guid id)
+        {
+            return this.files.Find((file) => file.Id == id).AbsPath;
+        }
+
+        /// <summary>
+        /// Convert a user Guid to username. Does not check existence.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        private string UserIdToUsername(Guid id)
+        {
+            return this.users.Find((user) => user.Id == id).Username;
         }
     }
 }

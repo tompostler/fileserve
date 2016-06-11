@@ -61,6 +61,15 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File guid not found..
+        /// </summary>
+        internal static string ErrorFileGuidNotFound {
+            get {
+                return ResourceManager.GetString("ErrorFileGuidNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File not found: {0}.
         /// </summary>
         internal static string ErrorFileNotFound {
@@ -133,11 +142,29 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid uint: {0}.
+        /// </summary>
+        internal static string ErrorInvalidUint {
+            get {
+                return ResourceManager.GetString("ErrorInvalidUint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid web path: {0}.
         /// </summary>
         internal static string ErrorInvalidWebPath {
             get {
                 return ResourceManager.GetString("ErrorInvalidWebPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User guid not found..
+        /// </summary>
+        internal static string ErrorUserGuidNotFound {
+            get {
+                return ResourceManager.GetString("ErrorUserGuidNotFound", resourceCulture);
             }
         }
         
@@ -196,11 +223,74 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pass: .
+        /// </summary>
+        internal static string GetAPasswordPass {
+            get {
+                return ResourceManager.GetString("GetAPasswordPass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User: .
+        /// </summary>
+        internal static string GetAStringUser {
+            get {
+                return ResourceManager.GetString("GetAStringUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Byte rate per file limit (def: inf): .
+        /// </summary>
+        internal static string GetAUintByteRateLimitInf {
+            get {
+                return ResourceManager.GetString("GetAUintByteRateLimitInf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Concurrent file limit (def: 1): .
+        /// </summary>
+        internal static string GetAUintConcurrentFileLimit1 {
+            get {
+                return ResourceManager.GetString("GetAUintConcurrentFileLimit1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Web path: /.
         /// </summary>
         internal static string GetAUriFileWebPath {
             get {
                 return ResourceManager.GetString("GetAUriFileWebPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (y/N): .
+        /// </summary>
+        internal static string GetAYesNoPrompt {
+            get {
+                return ResourceManager.GetString("GetAYesNoPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verbose?.
+        /// </summary>
+        internal static string GetAYesNoVerbose {
+            get {
+                return ResourceManager.GetString("GetAYesNoVerbose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y.
+        /// </summary>
+        internal static string GetAYesNoY {
+            get {
+                return ResourceManager.GetString("GetAYesNoY", resourceCulture);
             }
         }
         
@@ -270,6 +360,104 @@ namespace Unlimitedinf.Fileserve.Properties {
         internal static string ProgramConfigLinkAddFail {
             get {
                 return ResourceManager.GetString("ProgramConfigLinkAddFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Link deleted from configuration:
+        ///  {0}  {1}
+        ///  {2}  {3}.
+        /// </summary>
+        internal static string ProgramConfigLinkDel {
+            get {
+                return ResourceManager.GetString("ProgramConfigLinkDel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Did not delete a link from the configuration..
+        /// </summary>
+        internal static string ProgramConfigLinkDelFail {
+            get {
+                return ResourceManager.GetString("ProgramConfigLinkDelFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to   {0}  {1}.
+        /// </summary>
+        internal static string ProgramConfigLinkListFile {
+            get {
+                return ResourceManager.GetString("ProgramConfigLinkListFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}  {1}.
+        /// </summary>
+        internal static string ProgramConfigLinkListUser {
+            get {
+                return ResourceManager.GetString("ProgramConfigLinkListUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}
+        ///  {1}
+        ///  concurrency: {2}
+        ///  rate limit:  {3}.
+        /// </summary>
+        internal static string ProgramConfigUserAdd {
+            get {
+                return ResourceManager.GetString("ProgramConfigUserAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Did not add an user to the configuration..
+        /// </summary>
+        internal static string ProgramConfigUserAddFail {
+            get {
+                return ResourceManager.GetString("ProgramConfigUserAddFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User deleted from configuration: {0}.
+        /// </summary>
+        internal static string ProgramConfigUserDel {
+            get {
+                return ResourceManager.GetString("ProgramConfigUserDel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Did not delete user from the configuration..
+        /// </summary>
+        internal static string ProgramConfigUserDelFail {
+            get {
+                return ResourceManager.GetString("ProgramConfigUserDelFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}  {1}.
+        /// </summary>
+        internal static string ProgramConfigUserList {
+            get {
+                return ResourceManager.GetString("ProgramConfigUserList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}
+        ///  {1}
+        ///  concurrency: {2}
+        ///  rate limit:  {3}.
+        /// </summary>
+        internal static string ProgramConfigUserListVerbose {
+            get {
+                return ResourceManager.GetString("ProgramConfigUserListVerbose", resourceCulture);
             }
         }
         

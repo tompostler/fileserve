@@ -173,5 +173,39 @@
             }
             return null;
         }
+
+        /// <summary>
+        /// Get an unsigned integer from the console.
+        /// </summary>
+        /// <param name="prompt"></param>
+        /// <param name="retryCount"></param>
+        /// <returns></returns>
+        public static uint? Uint(string prompt = null, int retryCount = 3)
+        {
+            while (retryCount-- > 0)
+            {
+                string text = GetA.String(prompt);
+                if (string.IsNullOrEmpty(text))
+                    break;
+
+                uint ui;
+                if (!uint.TryParse(text, out ui))
+                    Console.WriteLine(Resources.ErrorInvalidUint, text);
+                else
+                    return ui;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Get a yes/no confirmation from the user. Appends ' (y/N): ' to the prompt.
+        /// </summary>
+        /// <param name="prompt"></param>
+        /// <returns></returns>
+        public static bool YesNo(string prompt = null)
+        {
+            string text = GetA.String($"{prompt}{(prompt == null ? "" : " ")}{Resources.GetAYesNoPrompt}");
+            return text.ToUpperInvariant() == Resources.GetAYesNoY;
+        }
     }
 }

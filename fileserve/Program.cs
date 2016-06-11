@@ -124,33 +124,18 @@
                 { "link", new Dictionary<string, Action>
                 {
                     { "add", config.LinkAdd },
-                    { "del", () =>
-                    {
-                        config.LinkDel(Guid.Empty, Guid.Empty);
-                    } },
-                    { "list", () =>
-                    {
-                        config.LinkList();
-                    } }
+                    { "del", config.LinkDel },
+                    { "list", config.LinkList }
                 } },
                 { "user", new Dictionary<string, Action>
                 {
-                    { "add", () =>
-                    {
-                        config.UserAdd(string.Empty, string.Empty);
-                    } },
-                    { "del", () =>
-                    {
-                        config.UserDel(Guid.Empty);
-                    } },
+                    { "add", config.UserAdd },
+                    { "del", config.UserDel },
                     { "edit", () =>
                     {
                         throw new NotImplementedException();
                     } },
-                    { "list", () =>
-                    {
-                        config.UserList();
-                    } }
+                    { "list", config.UserList }
                 } }
             };
 

@@ -26,21 +26,38 @@
         /// <summary>
         /// Lists all links in the configuration.
         /// </summary>
-        /// <param name="userId">Only list the linked files for this user.</param>
-        /// <param name="prettify">List the usernames and absolute paths in addition to the guids.</param>
-        public void LinkList(Guid userId = default(Guid), bool prettify = false)
+        public void LinkList()
         {
-            throw new NotImplementedException();
+            foreach (var link in this.links)
+            {
+                Console.WriteLine(Resources.ProgramConfigLinkListUser, link.Key, this.UserIdToUsername(link.Key));
+                foreach (var fileId in link.Value)
+                {
+                    Console.WriteLine(Resources.ProgramConfigLinkListFile, fileId, this.FileIdToAbsPath(fileId));
+                }
+            }
         }
 
         /// <summary>
         /// Lists all users in the configuration.
         /// </summary>
-        /// <param name="userId">Only list one user.</param>
-        /// <param name="detailed">Display the whole user information instead of just usernames.</param>
-        public void UserList(Guid userId = default(Guid), bool detailed = false)
+        public void UserList()
         {
-            throw new NotImplementedException();
+            bool verbose = Tools.GetA.YesNo(Resources.GetAYesNoVerbose);
+
+            foreach (User user in this.users)
+            {
+                if (verbose)
+                    Console.WriteLine(Resources.ProgramConfigUserListVerbose,
+                        user.Id,
+                        user.Username,
+                        user.ConcurrentFileLimit,
+                        user.ByteRatePerFileLimit);
+                else
+                    Console.WriteLine(Resources.ProgramConfigUserList,
+                        user.Id,
+                        user.Username);
+            }
         }
     }
 }

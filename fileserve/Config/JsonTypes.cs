@@ -43,12 +43,12 @@
         /// The number of files one user is able to download at the same time.
         /// Should return a 429 Too Many Requests when hit. Defaults 1.
         /// </summary>
-        public int ConcurrentFileLimit { get; set; }
+        public uint ConcurrentFileLimit { get; set; }
 
         /// <summary>
         /// The maximum speed allowed for each file for a user. Defaults unlimited.
         /// </summary>
-        public int ByteRatePerFileLimit { get; set; }
+        public uint ByteRatePerFileLimit { get; set; }
 
         public Guid Id { get; set; }
 
@@ -62,8 +62,8 @@
 
     internal static class UserDefaults
     {
-        public const int ConcurrentFileLimit = 1;
-        public const int ByteRatePerFileLimit = 0;
+        public const uint ConcurrentFileLimit = 1;
+        public const uint ByteRatePerFileLimit = 0;
     }
 
     /// <summary>
