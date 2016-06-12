@@ -81,44 +81,19 @@
                 }
             }
 
-            // Validate CLI
-            Dictionary<string, HashSet<string>> validCli = new Dictionary<string, HashSet<string>>
-            {
-                { "file", new HashSet<string> { "add", "del", "edit", "list" } },
-                { "link", new HashSet<string> { "add", "del", "list" } },
-                { "user", new HashSet<string> { "add", "del", "edit", "list" } }
-            };
-
-            // Check valid submodule
-            if (!validCli.Keys.Contains(submodule))
-            {
-                Console.WriteLine(Resources.ErrorInvalidSubmodule, submodule);
-                ShowConfigHelp();
-                return;
-            }
-
-            // Check valid command
-            if (!validCli[submodule].Contains(command))
-            {
-                Console.WriteLine(Resources.ErrorInvalidCommand, command);
-                ShowConfigHelp();
-                return;
-            }
-
             // Instance of config
             Config.Config config = new Config.Config(filename);
 
-            // Actual CLI
+            Action notImplementedYet = () => { throw new NotImplementedException(); };
+
+            // CLI
             Dictionary<string, Dictionary<string, Action>> cli = new Dictionary<string, Dictionary<string, Action>>
             {
                 { "file", new Dictionary<string, Action>
                 {
                     { "add", config.FileAdd },
                     { "del", config.FileDel },
-                    { "edit", () =>
-                    {
-                        throw new NotImplementedException();
-                    } },
+                    { "edit", notImplementedYet },
                     { "list", config.FileList }
                 } },
                 { "link", new Dictionary<string, Action>
@@ -131,13 +106,26 @@
                 {
                     { "add", config.UserAdd },
                     { "del", config.UserDel },
-                    { "edit", () =>
-                    {
-                        throw new NotImplementedException();
-                    } },
+                    { "edit", notImplementedYet },
                     { "list", config.UserList }
                 } }
             };
+
+            // Check valid submodule
+            if (!cli.Keys.Contains(submodule))
+            {
+                Console.WriteLine(Resources.ErrorInvalidSubmodule, submodule);
+                ShowConfigHelp();
+                return;
+            }
+
+            // Check valid command
+            if (!cli[submodule].Keys.Contains(command))
+            {
+                Console.WriteLine(Resources.ErrorInvalidCommand, command);
+                ShowConfigHelp();
+                return;
+            }
 
             // Run
             cli[submodule][command]();
