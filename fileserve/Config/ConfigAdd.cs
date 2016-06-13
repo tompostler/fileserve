@@ -48,12 +48,12 @@
                 return;
             }
 
-            if (!this.userGuids.Contains(userId))
+            if (!this.userIds.Contains(userId))
             {
                 Console.WriteLine(Resources.ErrorUserGuidNotFound);
                 return;
             }
-            if (!this.fileGuids.Contains(fileId))
+            if (!this.fileIds.Contains(fileId))
             {
                 Console.WriteLine(Resources.ErrorFileGuidNotFound);
                 return;

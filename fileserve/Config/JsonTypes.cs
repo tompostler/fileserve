@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Tools;
 
     /// <summary>
     /// The main configuration contained by the config file.
@@ -21,7 +22,7 @@
         /// <summary>
         /// Map of which files each user has access to.
         /// </summary>
-        public Dictionary<Guid, HashSet<Guid>> Links { get; set; }
+        public Dictionary<Id, HashSet<Id>> Links { get; set; }
     }
 
     /// <summary>
@@ -50,11 +51,11 @@
         /// </summary>
         public uint ByteRatePerFileLimit { get; set; }
 
-        public Guid Id { get; set; }
+        public Id Id { get; set; }
 
         public User()
         {
-            this.Id = Guid.NewGuid();
+            this.Id = Id.NewId();
             this.ConcurrentFileLimit = UserDefaults.ConcurrentFileLimit;
             this.ByteRatePerFileLimit = UserDefaults.ByteRatePerFileLimit;
         }
@@ -82,11 +83,11 @@
         /// </summary>
         public string AbsPath { get; set; }
 
-        public Guid Id { get; set; }
+        public Id Id { get; set; }
 
         public File()
         {
-            this.Id = Guid.NewGuid();
+            this.Id = Id.NewId();
         }
     }
 }

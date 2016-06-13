@@ -7,6 +7,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Tools;
 
     /// <summary>
     /// The running program's configuration, in addition to useful methods to work with the configuration.
@@ -15,11 +16,12 @@
     {
         private readonly List<Json.File> files;
         private readonly List<Json.User> users;
-        private readonly Dictionary<Guid, HashSet<Guid>> links;
+        private readonly Dictionary<Id, HashSet<Id>> links;
         private readonly string filename;
 
-        private HashSet<Guid> fileGuids => new HashSet<Guid>(this.files.ConvertAll<Guid>((file) => file.Id));
-        private HashSet<Guid> userGuids => new HashSet<Guid>(this.users.ConvertAll<Guid>((user) => user.Id));
+        private HashSet<Id> fileIds => new HashSet<Id>(this.files.ConvertAll((file) => file.Id));
+        private HashSet<Id> userIds => new HashSet<Id>(this.users.ConvertAll((user) => user.Id));
+        private HashSet<Id> allIds => new HashSet<Id>(this.fileIds.Union(this.userIds));
         
         /// <summary>
         /// Ctor.
@@ -50,7 +52,7 @@
             {
                 this.users = new List<Json.User>();
                 this.files = new List<Json.File>();
-                this.links = new Dictionary<Guid, HashSet<Guid>>();
+                this.links = new Dictionary<Id, HashSet<Id>>();
             }
         }
 
@@ -93,21 +95,21 @@
         }
 
         /// <summary>
-        /// Convert a fild Guid to absolute path. Does not check existence.
+        /// Convert a fild Id to absolute path. Does not check existence.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        private string FileIdToAbsPath(Guid id)
+        private string FileIdToAbsPath(Id id)
         {
             return this.files.Find((file) => file.Id == id).AbsPath;
         }
 
         /// <summary>
-        /// Convert a user Guid to username. Does not check existence.
+        /// Convert a user Id to username. Does not check existence.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        private string UserIdToUsername(Guid id)
+        private string UserIdToUsername(Id id)
         {
             return this.users.Find((user) => user.Id == id).Username;
         }
