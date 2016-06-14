@@ -18,9 +18,9 @@
         /// <param name="id"></param>
         public Id(uint id)
         {
-            this.a = (byte)((id & 0xFF000000) >> 6);
-            this.b = (byte)((id & 0x00FF0000) >> 4);
-            this.c = (byte)((id & 0x0000FF00) >> 2);
+            this.a = (byte)((id & 0xFF000000) >> 24);
+            this.b = (byte)((id & 0x00FF0000) >> 16);
+            this.c = (byte)((id & 0x0000FF00) >> 8);
             this.d = (byte)(id & 0xFF);
         }
 
@@ -46,12 +46,12 @@
         /// <summary>
         /// Deserialize ctor.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="sid"></param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="FormatException"></exception>
         /// <exception cref="OverflowException"></exception>
-        public Id(string id) : this(uint.Parse(id, System.Globalization.NumberStyles.HexNumber)) { }
+        public Id(string id) : this(uint.Parse(id.TrimStart('0'), System.Globalization.NumberStyles.HexNumber)) { }
 
         /// <summary>
         /// Eight lower case characters.
@@ -66,12 +66,12 @@
         /// Make it easier to work with an Id's formatting.
         /// </summary>
         /// <param name="id"></param>
-        public static implicit operator uint(Id id)
+        public static explicit operator uint(Id id)
         {
             uint res = 0;
-            res += (uint)(id.a << 6);
-            res += (uint)(id.b << 4);
-            res += (uint)(id.c << 2);
+            res += (uint)id.a << 24;
+            res += (uint)id.b << 16;
+            res += (uint)id.c << 8;
             res += id.d;
             return res;
         }
@@ -82,8 +82,7 @@
         /// <returns></returns>
         public static Id NewId()
         {
-            string token = GenA.HexToken(8);
-            return new Id(token);
+            return new Id(GenA.ByteArray(4));
         }
 
         /// <summary>
@@ -157,7 +156,7 @@
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "3")]
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            return new Id(serializer.Deserialize<uint>(reader));
+            return new Id(serializer.Deserialize<string>(reader));
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "2")]
