@@ -98,12 +98,12 @@
         }
 
         /// <summary>
-        /// Get a Guid from the console. Returns blank Guid on failure.
+        /// Get a Id from the console. Returns blank Id on failure.
         /// </summary>
         /// <param name="prompt"></param>
         /// <param name="retryCount"></param>
         /// <returns></returns>
-        public static Guid Guid(string prompt = null, int retryCount = 3)
+        public static Id Id(string prompt = null, int retryCount = 3)
         {
             while (retryCount-- > 0)
             {
@@ -112,15 +112,15 @@
                     break;
                 try
                 {
-                    Guid g = new Guid(text);
+                    Id g = new Id(text);
                     return g;
                 }
                 catch (Exception ex) when (ex is FormatException || ex is OverflowException)
                 {
-                    Console.WriteLine(Resources.ErrorInvalidGuid, text);
+                    Console.WriteLine(Resources.ErrorInvalidId, text);
                 }
             }
-            return System.Guid.Empty;
+            return Tools.Id.Empty;
         }
 
         /// <summary>

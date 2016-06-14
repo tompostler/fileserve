@@ -1,12 +1,9 @@
 ﻿namespace Unlimitedinf.Fileserve.Config
 {
     using Newtonsoft.Json;
-    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Tools;
 
     /// <summary>
@@ -37,7 +34,7 @@
             {
                 Json.Overall configFile;
 
-                using (StreamReader sr = new StreamReader(filename))
+                StreamReader sr = new StreamReader(filename);
                 using (JsonReader jr = new JsonTextReader(sr))
                 {
                     JsonSerializer js = new JsonSerializer();
@@ -71,7 +68,7 @@
                 Links = this.links
             };
 
-            using (StreamWriter sw = new StreamWriter(filename))
+            StreamWriter sw = new StreamWriter(filename);
             using (JsonWriter jw = new JsonTextWriter(sw))
             {
                 JsonSerializer js = new JsonSerializer();

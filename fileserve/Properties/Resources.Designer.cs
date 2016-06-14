@@ -61,11 +61,11 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File guid not found..
+        ///   Looks up a localized string similar to File id not found..
         /// </summary>
-        internal static string ErrorFileGuidNotFound {
+        internal static string ErrorFileIdNotFound {
             get {
-                return ResourceManager.GetString("ErrorFileGuidNotFound", resourceCulture);
+                return ResourceManager.GetString("ErrorFileIdNotFound", resourceCulture);
             }
         }
         
@@ -79,20 +79,20 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Guid not found..
-        /// </summary>
-        internal static string ErrorGuidNotFound {
-            get {
-                return ResourceManager.GetString("ErrorGuidNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to I&apos;m not sure what you wanted..
         /// </summary>
         internal static string ErrorIdk {
             get {
                 return ResourceManager.GetString("ErrorIdk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id not found..
+        /// </summary>
+        internal static string ErrorIdNotFound {
+            get {
+                return ResourceManager.GetString("ErrorIdNotFound", resourceCulture);
             }
         }
         
@@ -124,11 +124,11 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid guid: {0}.
+        ///   Looks up a localized string similar to Invalid id: {0}.
         /// </summary>
-        internal static string ErrorInvalidGuid {
+        internal static string ErrorInvalidId {
             get {
-                return ResourceManager.GetString("ErrorInvalidGuid", resourceCulture);
+                return ResourceManager.GetString("ErrorInvalidId", resourceCulture);
             }
         }
         
@@ -160,11 +160,11 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User guid not found..
+        ///   Looks up a localized string similar to User id not found..
         /// </summary>
-        internal static string ErrorUserGuidNotFound {
+        internal static string ErrorUserIddNotFound {
             get {
-                return ResourceManager.GetString("ErrorUserGuidNotFound", resourceCulture);
+                return ResourceManager.GetString("ErrorUserIddNotFound", resourceCulture);
             }
         }
         
@@ -178,29 +178,29 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Guid: .
+        ///   Looks up a localized string similar to Id: .
         /// </summary>
-        internal static string GetAGuid {
+        internal static string GetAId {
             get {
-                return ResourceManager.GetString("GetAGuid", resourceCulture);
+                return ResourceManager.GetString("GetAId", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File guid: .
+        ///   Looks up a localized string similar to File id: .
         /// </summary>
-        internal static string GetAGuidFile {
+        internal static string GetAIdFile {
             get {
-                return ResourceManager.GetString("GetAGuidFile", resourceCulture);
+                return ResourceManager.GetString("GetAIdFile", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User guid: .
+        ///   Looks up a localized string similar to User id: .
         /// </summary>
-        internal static string GetAGuidUser {
+        internal static string GetAIdUser {
             get {
-                return ResourceManager.GetString("GetAGuidUser", resourceCulture);
+                return ResourceManager.GetString("GetAIdUser", resourceCulture);
             }
         }
         

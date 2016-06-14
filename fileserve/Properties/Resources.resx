@@ -117,18 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ErrorFileGuidNotFound" xml:space="preserve">
-    <value>File guid not found.</value>
+  <data name="ErrorFileIdNotFound" xml:space="preserve">
+    <value>File id not found.</value>
   </data>
   <data name="ErrorFileNotFound" xml:space="preserve">
     <value>File not found: {0}</value>
     <comment>0=path</comment>
   </data>
-  <data name="ErrorGuidNotFound" xml:space="preserve">
-    <value>Guid not found.</value>
-  </data>
   <data name="ErrorIdk" xml:space="preserve">
     <value>I'm not sure what you wanted.</value>
+  </data>
+  <data name="ErrorIdNotFound" xml:space="preserve">
+    <value>Id not found.</value>
   </data>
   <data name="ErrorIncorrectArgCount" xml:space="preserve">
     <value>Incorrect number of arguments for {0} module: {1}</value>
@@ -142,9 +142,9 @@
     <value>Invalid filename: {0}</value>
     <comment>0=filename</comment>
   </data>
-  <data name="ErrorInvalidGuid" xml:space="preserve">
-    <value>Invalid guid: {0}</value>
-    <comment>0=guid</comment>
+  <data name="ErrorInvalidId" xml:space="preserve">
+    <value>Invalid id: {0}</value>
+    <comment>0=id</comment>
   </data>
   <data name="ErrorInvalidSubmodule" xml:space="preserve">
     <value>Invalid submodule: {0}</value>
@@ -158,20 +158,20 @@
     <value>Invalid web path: {0}</value>
     <comment>0=webPath</comment>
   </data>
-  <data name="ErrorUserGuidNotFound" xml:space="preserve">
-    <value>User guid not found.</value>
+  <data name="ErrorUserIddNotFound" xml:space="preserve">
+    <value>User id not found.</value>
   </data>
   <data name="GetAFileAbsPath" xml:space="preserve">
     <value>Absolute path:</value>
   </data>
-  <data name="GetAGuid" xml:space="preserve">
-    <value>Guid: </value>
+  <data name="GetAId" xml:space="preserve">
+    <value>Id: </value>
   </data>
-  <data name="GetAGuidFile" xml:space="preserve">
-    <value>File guid: </value>
+  <data name="GetAIdFile" xml:space="preserve">
+    <value>File id: </value>
   </data>
-  <data name="GetAGuidUser" xml:space="preserve">
-    <value>User guid: </value>
+  <data name="GetAIdUser" xml:space="preserve">
+    <value>User id: </value>
   </data>
   <data name="GetAPasswordBackspace" xml:space="preserve">
     <value>\b \b</value>
@@ -207,7 +207,7 @@
     <value>{0}
   /{1}
   {2}</value>
-    <comment>0=guid, 1=webPath, 2=absPath</comment>
+    <comment>0=id, 1=webPath, 2=absPath</comment>
   </data>
   <data name="ProgramConfigFileAddFail" xml:space="preserve">
     <value>Did not add a file to the configuration.</value>
@@ -225,7 +225,7 @@
     <value>{0}
   /{1}
   {2}</value>
-    <comment>0=guid, 1=webPath, 2=absPath</comment>
+    <comment>0=id, 1=webPath, 2=absPath</comment>
   </data>
   <data name="ProgramConfigLinkAdd" xml:space="preserve">
     <value>{0} &lt;--&gt; {1}</value>

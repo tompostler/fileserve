@@ -2,7 +2,7 @@
 {
     using Newtonsoft.Json;
     using System;
-
+    using System.Collections.Generic;
     /// <summary>
     /// A lighter-weight id tracker to replace the heftiness of Guid. 4 billion unique Ids, with 2 billion before
     /// statistically likely collisions built on a backing datatype of 4 bytes.
@@ -35,7 +35,7 @@
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
             if (id.Length != 4)
-                throw new ArgumentException();
+                throw new ArgumentException("Invalid length array", nameof(id));
 
             this.a = id[0];
             this.b = id[1];
@@ -87,6 +87,27 @@
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Id"/> structure. Will try up to 10 times to be unique from the
+        /// given set. If not unique, throws.
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <exception cref="ArgumentException">Thrown if a unique value could not be generated in 10 attempts.</exception>
+        /// <returns></returns>
+        public static Id NewId(HashSet<Id> ids)
+        {
+            int retryCount = 10;
+
+            Id id = Id.NewId();
+            while (ids.Contains(id) && retryCount-- > 0)
+                id = Id.NewId();
+
+            if (ids.Contains(id))
+                throw new ArgumentException("Could not generate a unique id.");
+
+            return id;
+        }
+
+        /// <summary>
         /// A read-only instance of the <see cref="Id"/> structure whose value is all zeroes.
         /// </summary>
         public static Id Empty = new Id(0);
@@ -95,7 +116,33 @@
         {
             return ((uint)this).CompareTo(other);
         }
+
+        public override bool Equals(object o)
+        {
+            Id other = (Id)o;
+
+            return this.a == other.a
+                && this.b == other.b
+                && this.c == other.c
+                && this.d == other.d;
+        }
+
+        public static bool operator ==(Id left, Id right)
+        {
+            return left.Equals(right);
+        }
+        public static bool operator !=(Id left, Id right)
+        {
+            return !left.Equals(right);
+        }
+
+        public override int GetHashCode()
+        {
+            return ((uint)this).GetHashCode();
+        }
     }
+
+    #region IdConverter
 
     /// <summary>
     /// Enable Json.NET serialization and deserialization.
@@ -107,14 +154,19 @@
             return objectType == typeof(Id);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "3")]
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             return new Id(serializer.Deserialize<uint>(reader));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "2")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "1")]
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             serializer.Serialize(writer, value.ToString());
         }
     }
+
+    #endregion
 }

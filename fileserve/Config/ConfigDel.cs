@@ -3,10 +3,6 @@
     using Json;
     using Properties;
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     internal sealed partial class Config
     {
@@ -15,8 +11,8 @@
         /// </summary>
         public void FileDel()
         {
-            Guid id = Tools.GetA.Guid(Resources.GetAGuid);
-            if (id == Guid.Empty)
+            Tools.Id id = Tools.GetA.Id(Resources.GetAId);
+            if (id == Tools.Id.Empty)
             {
                 Console.WriteLine(Resources.ProgramConfigFileDelFail);
                 return;
@@ -25,7 +21,7 @@
             int index = this.files.FindIndex((f) => f.Id == id);
             if (index == -1)
             {
-                Console.WriteLine(Resources.ErrorGuidNotFound);
+                Console.WriteLine(Resources.ErrorIdNotFound);
                 return;
             }
 
@@ -45,10 +41,10 @@
         /// </summary>
         public void LinkDel()
         {
-            Guid userId = Tools.GetA.Guid(Resources.GetAGuidUser);
-            Guid fileId = Tools.GetA.Guid(Resources.GetAGuidFile);
+            Tools.Id userId = Tools.GetA.Id(Resources.GetAIdUser);
+            Tools.Id fileId = Tools.GetA.Id(Resources.GetAIdFile);
 
-            if (userId == Guid.Empty || fileId == Guid.Empty)
+            if (userId == Tools.Id.Empty || fileId == Tools.Id.Empty)
             {
                 Console.WriteLine(Resources.ProgramConfigLinkDelFail);
                 return;
@@ -56,12 +52,12 @@
 
             if (!this.links.ContainsKey(userId))
             {
-                Console.WriteLine(Resources.ErrorUserGuidNotFound);
+                Console.WriteLine(Resources.ErrorUserIddNotFound);
                 return;
             }
             if (!this.links[userId].Contains(fileId))
             {
-                Console.WriteLine(Resources.ErrorFileGuidNotFound);
+                Console.WriteLine(Resources.ErrorFileIdNotFound);
                 return;
             }
 
@@ -74,8 +70,8 @@
         /// </summary>
         public void UserDel()
         {
-            Guid id = Tools.GetA.Guid(Resources.GetAGuid);
-            if (id == Guid.Empty)
+            Tools.Id id = Tools.GetA.Id(Resources.GetAId);
+            if (id == Tools.Id.Empty)
             {
                 Console.WriteLine(Resources.ProgramConfigUserDelFail);
                 return;
@@ -84,7 +80,7 @@
             int index = this.users.FindIndex((f) => f.Id == id);
             if (index == -1)
             {
-                Console.WriteLine(Resources.ErrorGuidNotFound);
+                Console.WriteLine(Resources.ErrorIdNotFound);
                 return;
             }
 

@@ -4,9 +4,6 @@
     using Properties;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     internal sealed partial class Config
     {
@@ -27,7 +24,8 @@
             File file = new File()
             {
                 WebPath = webPath,
-                AbsPath = absolutePath
+                AbsPath = absolutePath,
+                Id = Tools.Id.NewId(this.allIds)
             };
             this.files.Add(file);
 
@@ -39,10 +37,10 @@
         /// </summary>
         public void LinkAdd()
         {
-            Guid userId = Tools.GetA.Guid(Resources.GetAGuidUser);
-            Guid fileId = Tools.GetA.Guid(Resources.GetAGuidFile);
+            Tools.Id userId = Tools.GetA.Id(Resources.GetAIdUser);
+            Tools.Id fileId = Tools.GetA.Id(Resources.GetAIdFile);
 
-            if (userId == Guid.Empty || fileId == Guid.Empty)
+            if (userId == Tools.Id.Empty || fileId == Tools.Id.Empty)
             {
                 Console.WriteLine(Resources.ProgramConfigLinkAddFail);
                 return;
@@ -50,17 +48,17 @@
 
             if (!this.userIds.Contains(userId))
             {
-                Console.WriteLine(Resources.ErrorUserGuidNotFound);
+                Console.WriteLine(Resources.ErrorUserIddNotFound);
                 return;
             }
             if (!this.fileIds.Contains(fileId))
             {
-                Console.WriteLine(Resources.ErrorFileGuidNotFound);
+                Console.WriteLine(Resources.ErrorFileIdNotFound);
                 return;
             }
 
             if (!this.links.ContainsKey(userId))
-                this.links[userId] = new HashSet<Guid>();
+                this.links[userId] = new HashSet<Tools.Id>();
             this.links[userId].Add(fileId);
 
             Console.WriteLine(Resources.ProgramConfigLinkAdd, userId, fileId);
@@ -87,7 +85,8 @@
                 Username = username,
                 PasswordHash = Tools.Password.Hash(password),
                 ConcurrentFileLimit = concurrentFileLimit ?? UserDefaults.ConcurrentFileLimit,
-                ByteRatePerFileLimit = byteRatePerFileLimit ?? UserDefaults.ByteRatePerFileLimit
+                ByteRatePerFileLimit = byteRatePerFileLimit ?? UserDefaults.ByteRatePerFileLimit,
+                Id = Tools.Id.NewId(this.allIds)
             };
             this.users.Add(user);
 
