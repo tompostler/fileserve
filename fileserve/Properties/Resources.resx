@@ -203,12 +203,6 @@
   <data name="GetAYesNoY" xml:space="preserve">
     <value>Y</value>
   </data>
-  <data name="ProgramConfigFileAdd" xml:space="preserve">
-    <value>{0}
-  /{1}
-  {2}</value>
-    <comment>0=id, 1=webPath, 2=absPath</comment>
-  </data>
   <data name="ProgramConfigFileAddFail" xml:space="preserve">
     <value>Did not add a file to the configuration.</value>
   </data>
@@ -333,5 +327,11 @@ Submodule and Command Pairs:
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="unlimitedinf" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\unlimitedinf.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ProgramConfigFileEditFail" xml:space="preserve">
+    <value>Did not edit a file in the configuration.</value>
+  </data>
+  <data name="ProgramConfigUserEditFail" xml:space="preserve">
+    <value>Did not edit an user in the configuration.</value>
   </data>
 </root>

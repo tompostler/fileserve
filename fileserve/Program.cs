@@ -84,8 +84,6 @@
             // Instance of config
             Config.Config config = new Config.Config(filename);
 
-            Action notImplementedYet = () => { throw new NotImplementedException(); };
-
             // CLI
             Dictionary<string, Dictionary<string, Action>> cli = new Dictionary<string, Dictionary<string, Action>>
             {
@@ -93,7 +91,7 @@
                 {
                     { "add", config.FileAdd },
                     { "del", config.FileDel },
-                    { "edit", notImplementedYet },
+                    { "edit", config.FileEdit },
                     { "list", config.FileList }
                 } },
                 { "link", new Dictionary<string, Action>
@@ -106,7 +104,7 @@
                 {
                     { "add", config.UserAdd },
                     { "del", config.UserDel },
-                    { "edit", notImplementedYet },
+                    { "edit", config.UserEdit },
                     { "list", config.UserList }
                 } }
             };

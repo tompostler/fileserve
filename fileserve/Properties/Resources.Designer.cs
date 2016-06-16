@@ -295,17 +295,6 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}
-        ///  /{1}
-        ///  {2}.
-        /// </summary>
-        internal static string ProgramConfigFileAdd {
-            get {
-                return ResourceManager.GetString("ProgramConfigFileAdd", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Did not add a file to the configuration..
         /// </summary>
         internal static string ProgramConfigFileAddFail {
@@ -331,6 +320,15 @@ namespace Unlimitedinf.Fileserve.Properties {
         internal static string ProgramConfigFileDelFail {
             get {
                 return ResourceManager.GetString("ProgramConfigFileDelFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Did not edit a file in the configuration..
+        /// </summary>
+        internal static string ProgramConfigFileEditFail {
+            get {
+                return ResourceManager.GetString("ProgramConfigFileEditFail", resourceCulture);
             }
         }
         
@@ -437,6 +435,15 @@ namespace Unlimitedinf.Fileserve.Properties {
         internal static string ProgramConfigUserDelFail {
             get {
                 return ResourceManager.GetString("ProgramConfigUserDelFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Did not edit an user in the configuration..
+        /// </summary>
+        internal static string ProgramConfigUserEditFail {
+            get {
+                return ResourceManager.GetString("ProgramConfigUserEditFail", resourceCulture);
             }
         }
         

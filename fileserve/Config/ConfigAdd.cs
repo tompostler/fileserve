@@ -29,7 +29,7 @@
             };
             this.files.Add(file);
 
-            Console.WriteLine(Resources.ProgramConfigFileAdd, file.Id, file.WebPath, file.AbsPath);
+            Console.WriteLine(Resources.ProgramConfigFileList, file.Id, file.WebPath, file.AbsPath);
         }
 
         /// <summary>

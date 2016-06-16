@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\Config.cs" />
+    <Compile Include="Config\ConfigEdit.cs" />
     <Compile Include="Config\ConfigList.cs" />
     <Compile Include="Config\ConfigDel.cs" />
     <Compile Include="Config\ConfigAdd.cs" />
