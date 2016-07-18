@@ -10,7 +10,7 @@
     /// <summary>
     /// Serves files to the end user.
     /// </summary>
-    internal sealed class FileServer : IDisposable
+    internal class FileServer : IDisposable
     {
         /// <summary>
         /// The core server handling the http requests coming in from the outside world.
@@ -156,7 +156,7 @@
         /// Actually process an http request.
         /// </summary>
         /// <param name="context"></param>
-        private void Process(HttpListenerContext context)
+        protected virtual void Process(HttpListenerContext context)
         {
             const string data = "Here's a string to be served up for testing purposes.";
             byte[] buf = Encoding.UTF8.GetBytes(data);

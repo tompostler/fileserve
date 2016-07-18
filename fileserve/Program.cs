@@ -161,7 +161,20 @@
                 return;
             }
 
-            //TODO Start up the server
+            // Run the server
+            using (Server.FileServe fileserve = new Server.FileServe(config))
+            {
+                fileserve.Start();
+                Console.WriteLine(Resources.ProgramQToQuit);
+
+                string response = "";
+                while (response != "q")
+                {
+                    response = Console.ReadLine();
+                }
+
+                fileserve.Stop();
+            }
         }
 
         /// <summary>

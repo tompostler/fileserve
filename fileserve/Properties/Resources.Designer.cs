@@ -517,15 +517,29 @@ namespace Unlimitedinf.Fileserve.Properties {
         ///
         ///Usage: fileserve serve [FILENAME]
         ///
-        ///This module reads the configuration of the users, files, and links created by the config module and serves the files.
+        ///This module reads the configuration of the users, files, and links created by
+        ///the config module and serves the files.
         ///
-        ///The serve module looks for a fileserve.json in the current directory, but may also have this file passed in to override the default search. If the passed in file exists, then the configuration is loaded. If the passed in file does not exist, and the default fileserve.json does not exist, then the program will error and exit.
+        ///The serve module looks for a fileserve.json in the current directory, but may
+        ///also have this file passed in to override the default search. If the passed in
+        ///file exists, then the configuration is loaded. If the passed in file does not
+        ///exist, and the default fileserve.json does not exist, then the program will
+        ///error and exit.
         ///
-        ///A quick  [rest of string was truncated]&quot;;.
+        ///A q [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ProgramHelpServe {
             get {
                 return ResourceManager.GetString("ProgramHelpServe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter &apos;q&apos; to quit..
+        /// </summary>
+        internal static string ProgramQToQuit {
+            get {
+                return ResourceManager.GetString("ProgramQToQuit", resourceCulture);
             }
         }
         
