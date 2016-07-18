@@ -513,6 +513,23 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SERVE MODULE
+        ///
+        ///Usage: fileserve serve [FILENAME]
+        ///
+        ///This module reads the configuration of the users, files, and links created by the config module and serves the files.
+        ///
+        ///The serve module looks for a fileserve.json in the current directory, but may also have this file passed in to override the default search. If the passed in file exists, then the configuration is loaded. If the passed in file does not exist, and the default fileserve.json does not exist, then the program will error and exit.
+        ///
+        ///A quick  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ProgramHelpServe {
+            get {
+                return ResourceManager.GetString("ProgramHelpServe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon unlimitedinf {

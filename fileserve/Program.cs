@@ -28,17 +28,25 @@
                 {
                     if (args[0] == "help")
                         ShowHelp();
+                    if (args[0] == "serve")
+                        RunServe();
                 }
                 else if (args[0] == "help")
                 {
                     if (args[1] == "config")
                         ShowConfigHelp();
+                    if (args[1] == "serve")
+                        ShowServeHelp();
                 }
                 else if (args[0] == "config")
                 {
                     List<string> cargs = args.ToList();
                     cargs.RemoveAt(0);
                     RunConfig(cargs);
+                }
+                else if (args[0] == "serve")
+                {
+                    RunServe(args[1]);
                 }
                 else
                 {
@@ -131,6 +139,32 @@
         }
 
         /// <summary>
+        /// Runs the serve module.
+        /// </summary>
+        /// <param name="filename">The configuration filename.</param>
+        private static void RunServe(string filename = "fileserve.json")
+        {
+            // Check valid config file
+            if (!File.Exists(filename))
+            {
+                Console.WriteLine(Resources.ErrorFileNotFound, filename);
+                return;
+            }
+
+            Config.Config config = new Config.Config(filename);
+
+            // Check valid config files
+            string invalid = config.ValidateFiles();
+            if (!String.IsNullOrEmpty(invalid))
+            {
+                Console.WriteLine(Resources.ErrorFileNotFound, invalid);
+                return;
+            }
+
+            //TODO Start up the server
+        }
+
+        /// <summary>
         /// Help text for the overall program usage.
         /// </summary>
         private static void ShowHelp()
@@ -144,6 +178,14 @@
         private static void ShowConfigHelp()
         {
             Console.WriteLine(Resources.ProgramHelpConfig);
+        }
+
+        /// <summary>
+        /// Help text for the serve module.
+        /// </summary>
+        private static void ShowServeHelp()
+        {
+            Console.WriteLine(Resources.ProgramHelpServe);
         }
     }
 }

@@ -30,7 +30,7 @@
 
             // If the file exists, read the configuration from it.
             // Else create a new configuration.
-            if (System.IO.File.Exists(this.filename))
+            if (File.Exists(this.filename))
             {
                 Json.Overall configFile;
 
@@ -56,8 +56,7 @@
         /// <summary>
         /// Write the configuration to disk.
         /// </summary>
-        /// <param name="prettify"></param>
-        public void WriteToDisk(bool prettify = true)
+        public void WriteToDisk()
         {
             this.Clean();
 
@@ -72,8 +71,9 @@
             using (JsonWriter jw = new JsonTextWriter(sw))
             {
                 JsonSerializer js = new JsonSerializer();
-                if (prettify)
-                    js.Formatting = Formatting.Indented;
+#if DEBUG
+                js.Formatting = Formatting.Indented;
+#endif
                 js.Serialize(jw, configFile);
             }
         }
@@ -109,6 +109,20 @@
         private string UserIdToUsername(Id id)
         {
             return this.users.Find((user) => user.Id == id).Username;
+        }
+
+        /// <summary>
+        /// Validates that all files exist.
+        /// </summary>
+        /// <returns>Null if good, path to bad file if bad.</returns>
+        public string ValidateFiles()
+        {
+            foreach (Json.File file in this.files)
+            {
+                if (!File.Exists(file.AbsPath))
+                    return file.AbsPath;
+            }
+            return null;
         }
     }
 }
