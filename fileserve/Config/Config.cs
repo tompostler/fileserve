@@ -19,6 +19,8 @@
         private HashSet<Id> fileIds => new HashSet<Id>(this.files.ConvertAll((file) => file.Id));
         private HashSet<Id> userIds => new HashSet<Id>(this.users.ConvertAll((user) => user.Id));
         private HashSet<Id> allIds => new HashSet<Id>(this.fileIds.Union(this.userIds));
+
+        private HashSet<string> usernames => new HashSet<string>(this.users.ConvertAll((user) => user.Username));
         
         /// <summary>
         /// Ctor.

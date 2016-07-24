@@ -162,7 +162,7 @@
     <value>User id not found.</value>
   </data>
   <data name="GetAFileAbsPath" xml:space="preserve">
-    <value>Absolute path:</value>
+    <value>Absolute path: </value>
   </data>
   <data name="GetAId" xml:space="preserve">
     <value>Id: </value>

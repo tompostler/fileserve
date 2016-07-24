@@ -169,7 +169,7 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Absolute path:.
+        ///   Looks up a localized string similar to Absolute path: .
         /// </summary>
         internal static string GetAFileAbsPath {
             get {

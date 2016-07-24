@@ -77,6 +77,15 @@
         }
 
         /// <summary>
+        /// Convert a string to Id. Needed for newtonsoft.
+        /// </summary>
+        /// <param name="id"></param>
+        public static explicit operator Id(string id)
+        {
+            return new Id(id);
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Id"/> structure. Not guaranteed to be unique.
         /// </summary>
         /// <returns></returns>
