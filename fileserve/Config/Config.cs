@@ -16,12 +16,13 @@
         private readonly Dictionary<Id, HashSet<Id>> links;
         private readonly string filename;
 
-        private HashSet<Id> fileIds => new HashSet<Id>(this.files.ConvertAll((file) => file.Id));
-        private HashSet<Id> userIds => new HashSet<Id>(this.users.ConvertAll((user) => user.Id));
-        private HashSet<Id> allIds => new HashSet<Id>(this.fileIds.Union(this.userIds));
+        private HashSet<Id> fileIds { get; }
+        private HashSet<Id> userIds { get; }
+        private HashSet<Id> allIds { get; }
+        private HashSet<string> usernames { get; }
+        private Dictionary<Id, Json.File> filesById { get; }
+        private Dictionary<Id, Json.User> usersById { get; }
 
-        private HashSet<string> usernames => new HashSet<string>(this.users.ConvertAll((user) => user.Username));
-        
         /// <summary>
         /// Ctor.
         /// </summary>
@@ -46,6 +47,14 @@
                 this.files = configFile.Files;
                 this.users = configFile.Users;
                 this.links = configFile.Links;
+
+                // Convenience collection initialization
+                this.fileIds = new HashSet<Id>(this.files.ConvertAll((file) => file.Id));
+                this.userIds = new HashSet<Id>(this.users.ConvertAll((user) => user.Id));
+                this.allIds = new HashSet<Id>(this.fileIds.Union(this.userIds));
+                this.usernames = new HashSet<string>(this.users.ConvertAll((user) => user.Username));
+                this.filesById = new Dictionary<Id, Json.File>(this.files.ToDictionary((file) => file.Id));
+                this.usersById = new Dictionary<Id, Json.User>(this.users.ToDictionary((user) => user.Id));
             }
             else
             {
@@ -91,26 +100,6 @@
 
             this.files.Sort((l, r) => l.AbsPath.CompareTo(r.AbsPath));
             this.users.Sort((l, r) => l.Username.CompareTo(r.Username));
-        }
-
-        /// <summary>
-        /// Convert a fild Id to absolute path. Does not check existence.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        private string FileIdToAbsPath(Id id)
-        {
-            return this.files.Find((file) => file.Id == id).AbsPath;
-        }
-
-        /// <summary>
-        /// Convert a user Id to username. Does not check existence.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        private string UserIdToUsername(Id id)
-        {
-            return this.users.Find((user) => user.Id == id).Username;
         }
 
         /// <summary>

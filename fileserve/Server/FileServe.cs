@@ -1,6 +1,7 @@
 ﻿namespace Unlimitedinf.Fileserve.Server
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Net;
     using System.Text;
@@ -25,13 +26,36 @@
         /// <param name="context"></param>
         protected override void Process(HttpListenerContext context)
         {
-            Id id = this.Authorized(context.Request.Headers["Authorization"]);
-            if (id == Id.Empty)
+            // Parse the id from the authorization or make the user authorize
+            Id userId = this.Authorized(context.Request.Headers["Authorization"]);
+            if (userId == Id.Empty)
             {
                 context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                 context.Response.AddHeader("WWW-Authenticate", "Basic realm=\"User Visible Realm\"");
                 context.Response.OutputStream.Close();
                 return;
+            }
+
+            // Give user the directory
+            string url = context.Request.RawUrl.Substring(1);
+            if (string.IsNullOrEmpty(url))
+            {
+                using (StreamWriter sw = new StreamWriter(context.Response.OutputStream))
+                {
+                    sw.Write(Html.FilesToHtml(this.config.FilesAvailableToUser(userId), this.config.UserIdToUsername(userId)));
+                }
+            }
+
+            else if (url == "favicon.ico")
+            {
+                Properties.Resources.unlimitedinf.Save(context.Response.OutputStream);
+                context.Response.OutputStream.Close();
+                return;
+            }
+
+            else if (this.config.ValidUserAccess(userId, url))
+            {
+                //TODO serve file
             }
         }
 

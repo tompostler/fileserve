@@ -101,6 +101,7 @@
     <Compile Include="Server\FileServer.cs" />
     <Compile Include="Tools\GenA.cs" />
     <Compile Include="Tools\GetA.cs" />
+    <Compile Include="Tools\Html.cs" />
     <Compile Include="Tools\Id.cs" />
     <Compile Include="Tools\Password.cs" />
     <Compile Include="Program.cs" />
