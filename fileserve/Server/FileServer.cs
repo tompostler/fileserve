@@ -49,6 +49,11 @@
         private bool stopped = false;
 
         /// <summary>
+        /// Port number to run on.
+        /// </summary>
+        private int port = 80;
+
+        /// <summary>
         /// Ctor.
         /// </summary>
         public FileServer()
@@ -61,20 +66,28 @@
         }
 
         /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="port"></param>
+        public FileServer(int port) : this()
+        {
+            this.port = port;
+        }
+
+        /// <summary>
         /// Start the server.
         /// </summary>
-        public void Start()
+        public virtual void Start()
         {
             // This program would need to be run as admin without first doing:
             //  'netsh http add urlacl url=http://{domain}:{port}/ user=Everyone listen=yes'
             // Tested on Win10.
             // For linux, to run on port 80: sudo setcap 'cap_net_bind_service=+ep' /usr/local/bin/mono-sgen
             // http://stackoverflow.com/questions/2923966 and http://stackoverflow.com/questions/4019466
-            const string domain = "+";
-            const int port = 80;
+            const string domain = "*";
 
             // Spin up the server and listener
-            this.httpListener.Prefixes.Add($"http://{domain}:{port}/");
+            this.httpListener.Prefixes.Add($"http://{domain}:{this.port}/");
             this.listenerThread = new Thread(this.ListenerThread);
             this.httpListener.Start();
             this.listenerThread.Start();
@@ -86,6 +99,8 @@
                 processor.Start();
                 this.processingThreads.Add(processor);
             }
+
+            Tools.Logger.ServerStart(domain, this.port);
         }
 
         /// <summary>

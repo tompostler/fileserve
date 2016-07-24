@@ -18,10 +18,16 @@
         /// Ctor.
         /// </summary>
         /// <param name="config"></param>
-        public FileServe(Config.Config config) : base()
+        public FileServe(Config.Config config, int port) : base(port)
         {
             this.config = config;
             this.concurrentFileLimit = new Dictionary<Id, SemaphoreSlim>();
+        }
+
+        public override void Start()
+        {
+            base.Start();
+            this.config.LogDetails();
         }
 
         /// <summary>
@@ -39,7 +45,7 @@
                 context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                 context.Response.AddHeader("WWW-Authenticate", "Basic realm=\"User Visible Realm\"");
                 context.Response.OutputStream.Close();
-                Logger.ServerRequest("authorization", duration.ElapsedMilliseconds);
+                Logger.ServerAuthRequest(context.Request.RemoteEndPoint.Address.ToString(), duration.ElapsedMilliseconds);
                 return;
             }
 
@@ -50,7 +56,7 @@
                 using (StreamWriter sw = new StreamWriter(context.Response.OutputStream))
                 {
                     sw.Write(Html.FilesToHtml(this.config.FilesAvailableToUser(userId), this.config.UserIdToUsername(userId)));
-                    Logger.ServerRequest($"directory for {userId}", duration.ElapsedMilliseconds);
+                    Logger.ServerRequest(userId, "/", duration.ElapsedMilliseconds);
                     return;
                 }
             }
@@ -59,7 +65,7 @@
             {
                 Properties.Resources.unlimitedinf.Save(context.Response.OutputStream);
                 context.Response.OutputStream.Close();
-                Logger.ServerRequest("favicon.ico", duration.ElapsedMilliseconds);
+                Logger.ServerRequest(userId, "favicon.ico", duration.ElapsedMilliseconds);
                 return;
             }
 
@@ -85,7 +91,7 @@
                 using (ThrottledStream ts = new ThrottledStream(context.Response.OutputStream, this.config.UserIdToTransferRate(userId)))
                 using (FileStream input = file.OpenRead())
                 {
-                    Logger.ServerRequestStart(file.FullName);
+                    Logger.ServerRequestStart(userId, file.FullName);
                     byte[] buffer = new byte[1024 * 64];
                     int nbytes;
                     while ((nbytes = input.Read(buffer, 0, buffer.Length)) > 0)
@@ -96,12 +102,13 @@
                         }
                         catch (HttpListenerException)
                         {
-                            Logger.ServerRequestKilled(file.FullName);
+                            Logger.ServerRequestKilled(userId, file.FullName);
                             break;
                         }
                     }
-                    Logger.ServerRequestStop(file.FullName);
+                    Logger.ServerRequestStop(userId, file.FullName);
                 }
+                context.Response.OutputStream.Close();
                 this.concurrentFileLimit[userId].Release();
             }
         }

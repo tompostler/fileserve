@@ -355,4 +355,8 @@ unsatisfactory, then the program will exit with printed details of what failed.<
   <data name="ProgramQToQuit" xml:space="preserve">
     <value>Enter 'q' to quit.</value>
   </data>
+  <data name="ErrorInvalidPort" xml:space="preserve">
+    <value>Invalid port: {0}</value>
+    <comment>0=port</comment>
+  </data>
 </root>

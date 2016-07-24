@@ -133,6 +133,15 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid port: {0}.
+        /// </summary>
+        internal static string ErrorInvalidPort {
+            get {
+                return ResourceManager.GetString("ErrorInvalidPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid submodule: {0}.
         /// </summary>
         internal static string ErrorInvalidSubmodule {

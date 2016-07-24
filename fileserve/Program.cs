@@ -24,6 +24,8 @@
             int len = args.Length;
             if (len > 0)
             {
+                List<string> cargs = args.ToList();
+                cargs.RemoveAt(0);
                 if (len == 1)
                 {
                     if (args[0] == "help")
@@ -40,13 +42,11 @@
                 }
                 else if (args[0] == "config")
                 {
-                    List<string> cargs = args.ToList();
-                    cargs.RemoveAt(0);
                     RunConfig(cargs);
                 }
                 else if (args[0] == "serve")
                 {
-                    RunServe(args[1]);
+                    RunServe(cargs);
                 }
                 else
                 {
@@ -141,9 +141,16 @@
         /// <summary>
         /// Runs the serve module.
         /// </summary>
-        /// <param name="filename">The configuration filename.</param>
-        private static void RunServe(string filename = "fileserve.json")
+        /// <param name="args">The starting args, minus the first one.</param>
+        private static void RunServe(List<string> args = null)
         {
+            // Check args
+            if (args != null && args.Count == 0)
+            {
+                Console.WriteLine(Resources.ErrorFileNotFound, "<empty>");
+                return;
+            }
+            string filename = args == null ? "fileserve.json" : args[0];
             // Check valid config file
             if (!File.Exists(filename))
             {
@@ -161,8 +168,18 @@
                 return;
             }
 
+            int port = 80;
+            if (args != null && args.Count == 2)
+            {
+                if (!int.TryParse(args[1], out port))
+                {
+                    Console.WriteLine(Resources.ErrorInvalidPort, port);
+                    return;
+                }
+            }
+
             // Run the server
-            using (Server.FileServe fileserve = new Server.FileServe(config))
+            using (Server.FileServe fileserve = new Server.FileServe(config, port))
             {
                 fileserve.Start();
                 Console.WriteLine(Resources.ProgramQToQuit);

@@ -12,29 +12,36 @@
             Logger.Log($"Server started on {domain} at :{port}");
         }
 
-        internal static void ServerRequest(string path, long ms)
+        internal static void ServerAuthRequest(string ip, long ms)
         {
-            Logger.Log($"Request for {path} handled in {ms}ms");
+            Logger.Log($"auth request from {ip} handled in {ms}ms");
         }
 
-        internal static void ServerRequestStart(string path)
+        internal static void ServerRequest(Id userId, string path, long ms)
         {
-            Logger.Log($"Request for {path} started...");
+            Logger.Log($"{userId} wanting {path} handled in {ms}ms");
         }
 
-        internal static void ServerRequestStop(string path)
+        internal static void ServerRequestStart(Id userId, string path)
         {
-            Logger.Log($"Request for {path} completed.");
+            Logger.Log($"{userId} for {path} started...");
         }
 
-        internal static void ServerRequestKilled(string path)
+        internal static void ServerRequestStop(Id userId, string path)
         {
-            Logger.Log($"Request for {path} killed.");
+            Logger.Log($"{userId} for {path} completed.");
+        }
+
+        internal static void ServerRequestKilled(Id userId, string path)
+        {
+            Logger.Log($"{userId} for {path} killed.");
         }
 
         internal static void Log(string line)
         {
-            Console.WriteLine(DateTime.Now.ToString("[yy-MM-dd HH:mm:ss.FFF] ") + line);
+            Console.WriteLine(DateTime.Now.ToString("[yy-MM-dd HH:mm:ss.FFF] ") 
+                + $"[{System.Threading.Thread.CurrentThread.ManagedThreadId}] " 
+                + line);
         }
     }
 }

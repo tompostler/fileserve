@@ -115,5 +115,15 @@
             }
             return null;
         }
+
+        /// <summary>
+        /// Log the details of the currently running configuration to the console.
+        /// </summary>
+        public void LogDetails()
+        {
+            Logger.Log($"User count: {this.users.Count}");
+            Logger.Log($"File count: {this.files.Count}");
+            Logger.Log($"Link count: {this.links.Sum((linkset) => linkset.Value.Count)}");
+        }
     }
 }

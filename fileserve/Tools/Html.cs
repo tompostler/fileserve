@@ -63,7 +63,7 @@
             if (size == 0)
                 return "";
             
-            const int bse = 1000;   // Change to 1024 for base2 sizing
+            const int bse = 1024;
             if (size < bse)
                 return size.ToString("F1");
 
