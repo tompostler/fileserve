@@ -103,6 +103,9 @@
         /// <returns></returns>
         public static Id NewId(HashSet<Id> ids)
         {
+            if (ids == null)
+                return Id.NewId();
+
             int retryCount = 10;
 
             Id id = Id.NewId();

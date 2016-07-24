@@ -84,7 +84,9 @@
         /// <returns></returns>
         public bool ValidUserAccess(Tools.Id userId, Tools.Id fileId)
         {
-            return this.userIds.Contains(userId) && this.fileIds.Contains(fileId) && this.links[userId].Contains(fileId);
+            return this.userIds.Contains(userId)
+                && this.fileIds.Contains(fileId)
+                && this.links[userId].Contains(fileId);
         }
 
         /// <summary>
@@ -97,5 +99,20 @@
         {
             return this.ValidUserAccess(userId, this.FileWebPathToId(webPath));
         }
+
+        /// <summary>
+        /// Given a user Id, get the byte rate per file limit.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public long UserIdToTransferRate(Tools.Id userId) => this.usersById[userId].ByteRatePerFileLimit;
+
+        /// <summary>
+        /// Given a web path (and assuming it's been validated), convert it to the backing fileinfo.
+        /// </summary>
+        /// <param name="webPath"></param>
+        /// <returns></returns>
+        public FileInfo FileWebPathToFileInfo(string webPath) 
+            => new FileInfo(this.filesById[this.FileWebPathToId(webPath)].AbsPath);
     }
 }

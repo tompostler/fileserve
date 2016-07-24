@@ -55,7 +55,27 @@
 
             else if (this.config.ValidUserAccess(userId, url))
             {
-                //TODO serve file
+                FileInfo file = this.config.FileWebPathToFileInfo(url);
+
+                context.Response.ContentType = "application/octet-stream";
+                context.Response.ContentLength64 = file.Length;
+                using (ThrottledStream ts = new ThrottledStream(context.Response.OutputStream, this.config.UserIdToTransferRate(userId)))
+                using (FileStream input = file.OpenRead())
+                {
+                    byte[] buffer = new byte[1024 * 64];
+                    int nbytes;
+                    while ((nbytes = input.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        try
+                        {
+                            ts.Write(buffer, 0, nbytes);
+                        }
+                        catch (HttpListenerException)
+                        {
+                            return;
+                        }
+                    }
+                }
             }
         }
 

@@ -33,7 +33,7 @@
             // Size is 5 numbers and 1 unit (e.g. '##1.3G')
 
             // Header
-            html.Append("Name".PadRight(42) + "Last modified".PadRight(26) + "Size\n");
+            html.Append("Name".PadRight(42) + "Last modified".PadRight(19) + "Size\n");
             html.Append("<hr>");
 
             // Files
@@ -46,7 +46,7 @@
             }
 
             html.Append("\t</pre>\n");
-            html.Append("</body>/n");
+            html.Append("</body>\n");
             html.Append("</html>\n");
 
             return html.ToString();
