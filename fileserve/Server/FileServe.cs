@@ -2,14 +2,17 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.IO;
     using System.Net;
     using System.Text;
+    using System.Threading;
     using Tools;
 
     internal sealed class FileServe : FileServer
     {
         private Config.Config config;
+        private Dictionary<Id, SemaphoreSlim> concurrentFileLimit;
 
         /// <summary>
         /// Ctor.
@@ -18,6 +21,7 @@
         public FileServe(Config.Config config) : base()
         {
             this.config = config;
+            this.concurrentFileLimit = new Dictionary<Id, SemaphoreSlim>();
         }
 
         /// <summary>
@@ -26,6 +30,8 @@
         /// <param name="context"></param>
         protected override void Process(HttpListenerContext context)
         {
+            Stopwatch duration = Stopwatch.StartNew();
+
             // Parse the id from the authorization or make the user authorize
             Id userId = this.Authorized(context.Request.Headers["Authorization"]);
             if (userId == Id.Empty)
@@ -33,6 +39,7 @@
                 context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                 context.Response.AddHeader("WWW-Authenticate", "Basic realm=\"User Visible Realm\"");
                 context.Response.OutputStream.Close();
+                Logger.ServerRequest("authorization", duration.ElapsedMilliseconds);
                 return;
             }
 
@@ -43,6 +50,8 @@
                 using (StreamWriter sw = new StreamWriter(context.Response.OutputStream))
                 {
                     sw.Write(Html.FilesToHtml(this.config.FilesAvailableToUser(userId), this.config.UserIdToUsername(userId)));
+                    Logger.ServerRequest($"directory for {userId}", duration.ElapsedMilliseconds);
+                    return;
                 }
             }
 
@@ -50,18 +59,33 @@
             {
                 Properties.Resources.unlimitedinf.Save(context.Response.OutputStream);
                 context.Response.OutputStream.Close();
+                Logger.ServerRequest("favicon.ico", duration.ElapsedMilliseconds);
                 return;
             }
 
+            // Serve up the file
             else if (this.config.ValidUserAccess(userId, url))
             {
+                if (!this.concurrentFileLimit.ContainsKey(userId))
+                    this.concurrentFileLimit[userId] = new SemaphoreSlim((int)this.config.UserIdToConcurrencyLimit(userId));
                 FileInfo file = this.config.FileWebPathToFileInfo(url);
+
+                // Hit the limit
+                if (this.concurrentFileLimit[userId].CurrentCount == 0)
+                {
+                    context.Response.StatusCode = 429; //Too many requests
+                    context.Response.OutputStream.Close();
+                    Logger.Log($"429 for {userId}");
+                    return;
+                }
+                this.concurrentFileLimit[userId].Wait();
 
                 context.Response.ContentType = "application/octet-stream";
                 context.Response.ContentLength64 = file.Length;
                 using (ThrottledStream ts = new ThrottledStream(context.Response.OutputStream, this.config.UserIdToTransferRate(userId)))
                 using (FileStream input = file.OpenRead())
                 {
+                    Logger.ServerRequestStart(file.FullName);
                     byte[] buffer = new byte[1024 * 64];
                     int nbytes;
                     while ((nbytes = input.Read(buffer, 0, buffer.Length)) > 0)
@@ -72,10 +96,13 @@
                         }
                         catch (HttpListenerException)
                         {
-                            return;
+                            Logger.ServerRequestKilled(file.FullName);
+                            break;
                         }
                     }
+                    Logger.ServerRequestStop(file.FullName);
                 }
+                this.concurrentFileLimit[userId].Release();
             }
         }
 

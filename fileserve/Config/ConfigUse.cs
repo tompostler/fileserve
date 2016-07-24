@@ -108,6 +108,13 @@
         public long UserIdToTransferRate(Tools.Id userId) => this.usersById[userId].ByteRatePerFileLimit;
 
         /// <summary>
+        /// Given a user Id, get the concurrency limit for that user.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public uint UserIdToConcurrencyLimit(Tools.Id userId) => this.usersById[userId].ConcurrentFileLimit;
+
+        /// <summary>
         /// Given a web path (and assuming it's been validated), convert it to the backing fileinfo.
         /// </summary>
         /// <param name="webPath"></param>

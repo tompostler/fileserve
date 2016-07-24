@@ -81,6 +81,7 @@
     <Compile Include="Tools\GetA.cs" />
     <Compile Include="Tools\Html.cs" />
     <Compile Include="Tools\Id.cs" />
+    <Compile Include="Tools\Log.cs" />
     <Compile Include="Tools\Password.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
