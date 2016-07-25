@@ -100,6 +100,7 @@
                 this.processingThreads.Add(processor);
             }
 
+            Tools.Logger.Log($"Fileserve by UnlimitedInf v{typeof(Program).Assembly.GetName().Version}");
             Tools.Logger.ServerStart(domain, this.port);
         }
 

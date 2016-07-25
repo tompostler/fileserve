@@ -185,10 +185,7 @@
                 Console.WriteLine(Resources.ProgramQToQuit);
 
                 string response = "";
-                while (response != "q")
-                {
-                    response = Console.ReadLine();
-                }
+                while ((response = Console.ReadLine()) != "q") ;    // Ugly C style, but a nice oneliner
 
                 fileserve.Stop();
             }
