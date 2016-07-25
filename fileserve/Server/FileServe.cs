@@ -76,6 +76,15 @@
                 return;
             }
 
+            // Gotta love some easter eggs
+            else if (url == "teapot")
+            {
+                context.Response.StatusCode = 418; // I'm a teapot
+                context.Response.OutputStream.Close();
+                Logger.Server418(username);
+                return;
+            }
+
             // Serve up the file
             else if (this.config.ValidUserAccess(userId, url))
             {
