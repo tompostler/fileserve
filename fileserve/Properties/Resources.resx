@@ -352,8 +352,8 @@ A quick check will be done on startup to verify that all files exist and this
 program has permissions to them. If either of these conditions are
 unsatisfactory, then the program will exit with printed details of what failed.</value>
   </data>
-  <data name="ProgramQToQuit" xml:space="preserve">
-    <value>Enter 'q' to quit.</value>
+  <data name="ProgramQToQuitRToRestart" xml:space="preserve">
+    <value>Enter 'q' to quit or 'r' to reload the configuration.</value>
   </data>
   <data name="ErrorInvalidPort" xml:space="preserve">
     <value>Invalid port: {0}</value>

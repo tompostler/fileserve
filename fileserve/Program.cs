@@ -182,10 +182,27 @@
             using (Server.FileServe fileserve = new Server.FileServe(config, port))
             {
                 fileserve.Start();
-                Console.WriteLine(Resources.ProgramQToQuit);
+                Console.WriteLine(Resources.ProgramQToQuitRToRestart);
 
                 string response = "";
-                while ((response = Console.ReadLine()) != "q") ;    // Ugly C style, but a nice oneliner
+                do
+                {
+                    response = Console.ReadLine();
+                    if (response == "r")
+                    {
+                        // Assume config file name has not changed and the file still exists
+                        config = new Config.Config(filename);
+                        // Check valid config files
+                        invalid = config.ValidateFiles();
+                        if (!String.IsNullOrEmpty(invalid))
+                        {
+                            Console.WriteLine(Resources.ErrorFileNotFound, invalid);
+                            continue;
+                        }
+                        
+                    }
+                }
+                while (response != "q");
 
                 fileserve.Stop();
             }

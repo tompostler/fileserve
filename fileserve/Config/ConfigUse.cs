@@ -121,5 +121,12 @@
         /// <returns></returns>
         public FileInfo FileWebPathToFileInfo(string webPath) 
             => new FileInfo(this.filesById[this.FileWebPathToId(webPath)].AbsPath);
+
+        /// <summary>
+        /// Given a user Id, see if it exists in the config.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public bool UserIdExists(Tools.Id userId) => this.userIds.Contains(userId);
     }
 }

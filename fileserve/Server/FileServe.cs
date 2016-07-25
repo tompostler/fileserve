@@ -25,6 +25,29 @@
         }
 
         /// <summary>
+        /// Update the config of the currently running fileserve.
+        /// </summary>
+        /// <param name="config"></param>
+        public void UpdateConfig(Config.Config config)
+        {
+            this.config = config;
+
+            // Reset the counters
+            //  Yes it will introduce the ability for a person to download more than allowed number of files at once 
+            //  if they have existing downloads
+            //  But it seems to be the cleanest way to update this runtime object from an updated config sans-crash
+            foreach (Id userId in this.concurrentFileLimit.Keys)
+            {
+                // If a user id no longer exists, it will fail to auth on the next re-established connection
+                if (this.config.UserIdExists(userId))
+                {
+                    int limit = (int)this.config.UserIdToConcurrencyLimit(userId);
+                    this.concurrentFileLimit[userId] = new SemaphoreSlim(limit, limit);
+                }
+            }
+        }
+
+        /// <summary>
         /// <see cref="FileServer.Start"/> with config details logged.
         /// </summary>
         public override void Start()
@@ -94,6 +117,7 @@
                 FileInfo file = this.config.FileWebPathToFileInfo(url);
 
                 // Check for limit hit
+                // Checkout a file if not hit
                 if (this.concurrentFileLimit[userId].CurrentCount == 0)
                 {
                     context.Response.StatusCode = 429; //Too many requests
@@ -128,14 +152,25 @@
                             break;
                         }
 
-                        // Status every 256MB
+                        // Status log every 256MB
                         if (++chunks % 256 == 0)
                             Logger.ServerRequestPartial(username, file.Name, (byte)(chunks * 1024 * 1024 * 100 / file.Length));
                     }
                     Logger.ServerRequestStop(username, file.Name);
                 }
+
+                // Close connection -- file complete
                 context.Response.OutputStream.Close();
-                this.concurrentFileLimit[userId].Release();
+
+                // Release a file back to this user. Try-catch necessary due to hot config reload capability
+                try
+                {
+                    this.concurrentFileLimit[userId].Release();
+                }
+                catch (SemaphoreFullException)
+                {
+                    Logger.ServerSemaphoreFullException(username);
+                }
             }
         }
 

@@ -544,11 +544,11 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter &apos;q&apos; to quit..
+        ///   Looks up a localized string similar to Enter &apos;q&apos; to quit or &apos;r&apos; to reload the configuration..
         /// </summary>
-        internal static string ProgramQToQuit {
+        internal static string ProgramQToQuitRToRestart {
             get {
-                return ResourceManager.GetString("ProgramQToQuit", resourceCulture);
+                return ResourceManager.GetString("ProgramQToQuitRToRestart", resourceCulture);
             }
         }
         

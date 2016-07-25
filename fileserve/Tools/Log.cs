@@ -34,6 +34,9 @@
         internal static void Server429(string username)
             => Logger.Log($"{username} hit 429");
 
+        internal static void ServerSemaphoreFullException(string username)
+            => Logger.Log($"{username} affected by config reload");
+
         internal static void Log(string line)
         {
             Console.WriteLine($"[{DateTime.Now:yy-MM-dd HH:mm:ss.fff}] "
