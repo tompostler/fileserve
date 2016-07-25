@@ -3,7 +3,7 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
     <ProjectGuid>{FC198572-BD1A-4270-9457-27C924AE22EF}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -75,6 +75,7 @@
     <Compile Include="Config\ConfigAdd.cs" />
     <Compile Include="Config\JsonTypes.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Icon.cs" />
     <Compile Include="Server\FileServe.cs" />
     <Compile Include="Server\FileServer.cs" />
     <Compile Include="Tools\GenA.cs" />

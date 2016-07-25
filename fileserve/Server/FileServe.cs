@@ -63,7 +63,7 @@
 
             else if (url == "favicon.ico")
             {
-                Properties.Resources.unlimitedinf.Save(context.Response.OutputStream);
+                context.Response.OutputStream.Write(Icon.Favicon, 0, Icon.Favicon.Length);
                 context.Response.OutputStream.Close();
                 Logger.ServerRequest(userId, "favicon.ico", duration.ElapsedMilliseconds);
                 return;
@@ -100,7 +100,7 @@
                         {
                             ts.Write(buffer, 0, nbytes);
                         }
-                        catch (HttpListenerException)
+                        catch (Exception e) when (e is HttpListenerException || e is IOException)
                         {
                             Logger.ServerRequestKilled(userId, file.FullName);
                             break;

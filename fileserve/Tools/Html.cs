@@ -39,7 +39,7 @@
             // Files
             foreach (var file in files)
             {
-                string name = Html.getPrettyName(file.Item1);
+                string name = Html.getPrettyName(Uri.UnescapeDataString(file.Item1));
                 html.Append($"<a href=\"{file.Item1}\">{name}</a>{"".PadLeft(40 - name.Length)}  ");
                 html.Append($"{file.Item2.LastAccessTime.ToString("dd-MMM-yyyy HH:mm")}  ");
                 html.Append($"{Html.getPrettySize(file.Item2.Length).PadLeft(6)}\n");

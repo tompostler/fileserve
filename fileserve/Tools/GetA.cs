@@ -141,7 +141,7 @@
                 if (!Uri.TryCreate(text, UriKind.Relative, out uri))
                     Console.WriteLine(Resources.ErrorInvalidWebPath, text);
                 else
-                    return text;
+                    return Uri.EscapeUriString(text);
             }
             return null;
         }
