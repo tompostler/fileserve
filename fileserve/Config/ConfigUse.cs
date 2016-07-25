@@ -34,7 +34,7 @@
         {
             List<Tuple<string, FileInfo>> directory = new List<Tuple<string, FileInfo>>();
 
-            if (!this.userIds.Contains(userId) || this.links[userId].Count == 0)
+            if (!this.links.ContainsKey(userId) || this.links[userId].Count == 0)
                 return directory;
 
             foreach (Tools.Id fileId in this.links[userId])
