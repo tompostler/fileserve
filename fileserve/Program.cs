@@ -199,7 +199,7 @@
                             Console.WriteLine(Resources.ErrorFileNotFound, invalid);
                             continue;
                         }
-                        
+                        fileserve.UpdateConfig(config);
                     }
                 }
                 while (response != "q");

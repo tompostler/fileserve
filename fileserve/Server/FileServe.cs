@@ -31,6 +31,7 @@
         public void UpdateConfig(Config.Config config)
         {
             this.config = config;
+            this.config.LogDetails();
 
             // Reset the counters
             //  Yes it will introduce the ability for a person to download more than allowed number of files at once 
