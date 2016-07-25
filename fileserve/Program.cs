@@ -213,7 +213,7 @@
         /// </summary>
         private static void ShowHelp()
         {
-            Console.WriteLine(Resources.ProgramHelp);
+            Console.WriteLine(Resources.ProgramHelp, $"Fileserve by UnlimitedInf v{typeof(Program).Assembly.GetName().Version}");
         }
 
         /// <summary>

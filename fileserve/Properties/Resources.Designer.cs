@@ -478,7 +478,8 @@ namespace Unlimitedinf.Fileserve.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Usage: fileserve MODULE [SUBMODULE] [COMMAND] [ARGS]
+        ///   Looks up a localized string similar to {0}
+        ///Usage: fileserve MODULE [SUBMODULE] [COMMAND] [ARGS]
         ///
         ///A complete utilty to manage and serve up binary files on a per-user basis using
         ///HTTP to enable the largest audience consumption.
@@ -492,7 +493,7 @@ namespace Unlimitedinf.Fileserve.Properties {
         ///Will give you the help for the module config.
         ///
         ///Modules:
-        ///  config        Adjust the configuration of the users, files, a [rest of string was truncated]&quot;;.
+        ///  config        Adjust the configuration of the users, fil [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ProgramHelp {
             get {

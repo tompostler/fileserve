@@ -274,7 +274,8 @@
     <comment>0=userId, 1=username, 2=fileLimit, 3=rateLimit</comment>
   </data>
   <data name="ProgramHelp" xml:space="preserve">
-    <value>Usage: fileserve MODULE [SUBMODULE] [COMMAND] [ARGS]
+    <value>{0}
+Usage: fileserve MODULE [SUBMODULE] [COMMAND] [ARGS]
 
 A complete utilty to manage and serve up binary files on a per-user basis using
 HTTP to enable the largest audience consumption.
@@ -290,7 +291,9 @@ Will give you the help for the module config.
 Modules:
   config        Adjust the configuration of the users, files, and links
                 available when running the progam.
+  serve         Actually serve up the files based on a configuration.
   help          Provide help for top-level modules.</value>
+    <comment>0=nameAndVersionString</comment>
   </data>
   <data name="ProgramHelpConfig" xml:space="preserve">
     <value>CONFIG MODULE
