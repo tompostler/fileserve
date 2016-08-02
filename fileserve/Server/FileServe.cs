@@ -183,7 +183,7 @@
         /// Base64 string decoded is simply 'username:password' in plaintext.
         /// </remarks>
         /// <example>
-        /// Authorized("Basic: adboidnw868GLYFVod9d/sadg86")
+        /// Authorized("Basic: eW91IHRob3VnaHQgaSdkIGdpdmUgeW91IHNvbWV0aGluZz8=")
         /// </example>
         /// <param name="authorizationHeader"></param>
         /// <returns><see cref="Id.Empty"/> if not valid, <see cref="Id"/> otherwise.</returns>

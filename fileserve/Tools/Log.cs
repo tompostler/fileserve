@@ -37,6 +37,12 @@
         internal static void ServerSemaphoreFullException(string username)
             => Logger.Log($"{username} affected by config reload");
 
+        internal static void ConfigUsernameNotFound(string username)
+            => Logger.Log($"Username '{username}' not found!");
+
+        internal static void ConfigInvalidPassword(string username, string maskedPassword)
+            => Logger.Log($"{username} failed password check {maskedPassword}!");
+
         internal static void Log(string line)
         {
             Console.WriteLine($"[{DateTime.Now:yy-MM-dd HH:mm:ss.fff}] "

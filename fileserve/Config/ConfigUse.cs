@@ -16,11 +16,18 @@
         public Tools.Id ValidateUserToId(string username, string password)
         {
             if (!this.usernames.Contains(username))
+            {
+                Tools.Logger.ConfigUsernameNotFound(username);
                 return Tools.Id.Empty;
+            }
 
             foreach (User user in this.users)
                 if (user.Username == username)
-                    return Tools.Password.Validate(password, user.PasswordHash) ? user.Id : Tools.Id.Empty;
+                {
+                    Tools.Id userId = Tools.Password.Validate(password, user.PasswordHash) ? user.Id : Tools.Id.Empty;
+                    if (userId == Tools.Id.Empty)
+                        Tools.Logger.ConfigInvalidPassword(username, "".PadLeft(password.Length, '*'));
+                }
 
             return Tools.Id.Empty;
         }
