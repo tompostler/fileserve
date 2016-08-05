@@ -144,13 +144,23 @@
         /// <param name="args">The starting args, minus the first one.</param>
         private static void RunServe(List<string> args = null)
         {
-            // Check args
-            if (args != null && args.Count == 0)
+            // Check for port
+            int port = 80;
+            if (args != null && args.Count > 0)
             {
-                Console.WriteLine(Resources.ErrorFileNotFound, "<empty>");
-                return;
+                if (!int.TryParse(args[0], out port))
+                {
+                    Console.WriteLine(Resources.ErrorInvalidPort, port);
+                    return;
+                }
             }
-            string filename = args == null ? "fileserve.json" : args[0];
+
+            // Check args
+            string filename;
+            if (args == null || args.Count < 2)
+                filename = "fileserve.json";
+            else
+                filename = args[1];
             // Check valid config file
             if (!File.Exists(filename))
             {
@@ -166,16 +176,6 @@
             {
                 Console.WriteLine(Resources.ErrorFileNotFound, invalid);
                 return;
-            }
-
-            int port = 80;
-            if (args != null && args.Count == 2)
-            {
-                if (!int.TryParse(args[1], out port))
-                {
-                    Console.WriteLine(Resources.ErrorInvalidPort, port);
-                    return;
-                }
             }
 
             // Run the server

@@ -79,7 +79,7 @@
         public Tools.Id FileWebPathToId(string webPath)
         {
             Json.File file = this.files.Find((f) => f.WebPath == webPath);
-            if (string.IsNullOrEmpty(file.WebPath) && string.IsNullOrEmpty(file.AbsPath))
+            if (file == null || string.IsNullOrEmpty(file.WebPath) || string.IsNullOrEmpty(file.AbsPath))
                 return Tools.Id.Empty;
             return file.Id;
         }

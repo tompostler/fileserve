@@ -340,10 +340,12 @@ Submodule and Command Pairs:
   <data name="ProgramHelpServe" xml:space="preserve">
     <value>SERVE MODULE
 
-Usage: fileserve serve [FILENAME]
+Usage: fileserve serve [PORT] [FILENAME]
 
 This module reads the configuration of the users, files, and links created by
 the config module and serves the files.
+
+Port is obviously which port to run the server on. Defaults to 80.
 
 The serve module looks for a fileserve.json in the current directory, but may
 also have this file passed in to override the default search. If the passed in

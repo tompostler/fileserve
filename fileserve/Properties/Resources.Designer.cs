@@ -525,18 +525,17 @@ namespace Unlimitedinf.Fileserve.Properties {
         /// <summary>
         ///   Looks up a localized string similar to SERVE MODULE
         ///
-        ///Usage: fileserve serve [FILENAME]
+        ///Usage: fileserve serve [PORT] [FILENAME]
         ///
         ///This module reads the configuration of the users, files, and links created by
         ///the config module and serves the files.
         ///
+        ///Port is obviously which port to run the server on. Defaults to 80.
+        ///
         ///The serve module looks for a fileserve.json in the current directory, but may
         ///also have this file passed in to override the default search. If the passed in
         ///file exists, then the configuration is loaded. If the passed in file does not
-        ///exist, and the default fileserve.json does not exist, then the program will
-        ///error and exit.
-        ///
-        ///A q [rest of string was truncated]&quot;;.
+        ///exist, and the default [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ProgramHelpServe {
             get {
