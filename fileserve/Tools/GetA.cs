@@ -2,6 +2,7 @@
 {
     using Properties;
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Security;
     using System.Text;
@@ -135,6 +136,16 @@
             {
                 string text = GetA.String(prompt);
                 if (string.IsNullOrEmpty(text))
+                    break;
+
+                // Not allowed
+                HashSet<string> invalidFilenames = new HashSet<string>()
+                {
+                    "favicon.ico",
+                    "logout",
+                    "teapot"
+                };
+                if (invalidFilenames.Contains(text))
                     break;
 
                 Uri uri;

@@ -100,6 +100,17 @@
                 return;
             }
 
+            // logout
+            //  Force a 401 to get the browser to forget the creds
+            else if (url == "logout")
+            {
+                context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                context.Response.AddHeader("WWW-Authenticate", "Basic realm=\"User Visible Realm\"");
+                context.Response.OutputStream.Close();
+                Logger.ServerRequest(username, "logout", duration.ElapsedMilliseconds);
+                return;
+            }
+
             // Gotta love some easter eggs
             else if (url == "teapot")
             {
