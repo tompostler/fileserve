@@ -27,6 +27,7 @@
                     Tools.Id userId = Tools.Password.Validate(password, user.PasswordHash) ? user.Id : Tools.Id.Empty;
                     if (userId == Tools.Id.Empty)
                         Tools.Logger.ConfigInvalidPassword(username, "".PadLeft(password.Length, '*'));
+                    return userId;
                 }
 
             return Tools.Id.Empty;
