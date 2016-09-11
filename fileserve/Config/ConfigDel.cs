@@ -3,6 +3,7 @@
     using Json;
     using Properties;
     using System;
+    using Unlimitedinf.Tools;
 
     internal sealed partial class Config
     {
@@ -11,8 +12,8 @@
         /// </summary>
         public void FileDel()
         {
-            Tools.Id id = Tools.GetA.Id(Resources.GetAId);
-            if (id == Tools.Id.Empty)
+            Id id = Tools.GetA.Id(Resources.GetAId);
+            if (id == Id.Empty)
             {
                 Console.WriteLine(Resources.ProgramConfigFileDelFail);
                 return;
@@ -41,10 +42,10 @@
         /// </summary>
         public void LinkDel()
         {
-            Tools.Id userId = Tools.GetA.Id(Resources.GetAIdUser);
-            Tools.Id fileId = Tools.GetA.Id(Resources.GetAIdFile);
+            Id userId = Tools.GetA.Id(Resources.GetAIdUser);
+            Id fileId = Tools.GetA.Id(Resources.GetAIdFile);
 
-            if (userId == Tools.Id.Empty || fileId == Tools.Id.Empty)
+            if (userId == Id.Empty || fileId == Id.Empty)
             {
                 Console.WriteLine(Resources.ProgramConfigLinkDelFail);
                 return;
@@ -70,8 +71,8 @@
         /// </summary>
         public void UserDel()
         {
-            Tools.Id id = Tools.GetA.Id(Resources.GetAId);
-            if (id == Tools.Id.Empty)
+            Id id = Tools.GetA.Id(Resources.GetAId);
+            if (id == Id.Empty)
             {
                 Console.WriteLine(Resources.ProgramConfigUserDelFail);
                 return;

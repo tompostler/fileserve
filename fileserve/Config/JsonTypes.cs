@@ -1,8 +1,7 @@
 ﻿namespace Unlimitedinf.Fileserve.Config.Json
 {
-    using System;
     using System.Collections.Generic;
-    using Tools;
+    using Unlimitedinf.Tools;
 
     /// <summary>
     /// The main configuration contained by the config file.

@@ -6,6 +6,7 @@
     using System.IO;
     using System.Security;
     using System.Text;
+    using Unlimitedinf.Tools;
 
     /// <summary>
     /// Contains various static methods to get information from the user via the console.
@@ -99,7 +100,7 @@
         }
 
         /// <summary>
-        /// Get a Id from the console. Returns blank Id on failure.
+        /// Get an Id from the console. Returns blank Id on failure.
         /// </summary>
         /// <param name="prompt"></param>
         /// <param name="retryCount"></param>
@@ -121,7 +122,7 @@
                     Console.WriteLine(Resources.ErrorInvalidId, text);
                 }
             }
-            return Tools.Id.Empty;
+            return Unlimitedinf.Tools.Id.Empty;
         }
 
         /// <summary>

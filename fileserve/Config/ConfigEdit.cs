@@ -3,6 +3,7 @@
     using Json;
     using Properties;
     using System;
+    using Unlimitedinf.Tools;
 
     internal sealed partial class Config
     {
@@ -12,8 +13,8 @@
         public void FileEdit()
         {
             // Find the file
-            Tools.Id id = Tools.GetA.Id(Resources.GetAId);
-            if (id == Tools.Id.Empty)
+            Id id = Tools.GetA.Id(Resources.GetAId);
+            if (id == Id.Empty)
             {
                 Console.WriteLine(Resources.ProgramConfigFileEditFail);
                 return;
@@ -49,8 +50,8 @@
         public void UserEdit()
         {
             // Find the user
-            Tools.Id id = Tools.GetA.Id(Resources.GetAId);
-            if (id == Tools.Id.Empty)
+            Id id = Tools.GetA.Id(Resources.GetAId);
+            if (id == Id.Empty)
             {
                 Console.WriteLine(Resources.ProgramConfigUserEditFail);
                 return;

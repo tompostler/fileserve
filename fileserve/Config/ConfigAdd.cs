@@ -4,6 +4,7 @@
     using Properties;
     using System;
     using System.Collections.Generic;
+    using Unlimitedinf.Tools;
 
     internal sealed partial class Config
     {
@@ -25,7 +26,7 @@
             {
                 WebPath = webPath,
                 AbsPath = absolutePath,
-                Id = Tools.Id.NewId(this.allIds)
+                Id = Id.NewId(this.allIds)
             };
             this.files.Add(file);
 
@@ -37,10 +38,10 @@
         /// </summary>
         public void LinkAdd()
         {
-            Tools.Id userId = Tools.GetA.Id(Resources.GetAIdUser);
-            Tools.Id fileId = Tools.GetA.Id(Resources.GetAIdFile);
+            Id userId = Tools.GetA.Id(Resources.GetAIdUser);
+            Id fileId = Tools.GetA.Id(Resources.GetAIdFile);
 
-            if (userId == Tools.Id.Empty || fileId == Tools.Id.Empty)
+            if (userId == Id.Empty || fileId == Id.Empty)
             {
                 Console.WriteLine(Resources.ProgramConfigLinkAddFail);
                 return;
@@ -58,7 +59,7 @@
             }
 
             if (!this.links.ContainsKey(userId))
-                this.links[userId] = new HashSet<Tools.Id>();
+                this.links[userId] = new HashSet<Id>();
             this.links[userId].Add(fileId);
 
             Console.WriteLine(Resources.ProgramConfigLinkAdd, userId, fileId);
@@ -86,7 +87,7 @@
                 PasswordHash = Tools.Password.Hash(password),
                 ConcurrentFileLimit = concurrentFileLimit ?? UserDefaults.ConcurrentFileLimit,
                 ByteRatePerFileLimit = byteRatePerFileLimit ?? UserDefaults.ByteRatePerFileLimit,
-                Id = Tools.Id.NewId(this.allIds)
+                Id = Id.NewId(this.allIds)
             };
             this.users.Add(user);
 

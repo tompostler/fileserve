@@ -2,6 +2,7 @@
 {
     using BCrypt.Net;
     using System;
+
     /// <summary>
     /// Contains various static methods to handle passwords.
     /// </summary>
@@ -57,10 +58,7 @@
         public static string HashUpgrade(string password, string hash, int levels = 1)
         {
             if (Password.Validate(password, hash))
-            {
-                
                 return Password.Hash(password, Password.WorkFactor(hash) + levels);
-            }
             return null;
         }
 
